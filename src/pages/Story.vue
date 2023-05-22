@@ -1,25 +1,36 @@
 <template>
     <div class="story">
-        <div class="page1">
+
+        <div class="page1" v-show="pageCounter === 1">
             <p class="title">'数'说青春:
                 <br /><span class="sub-title">毕业生的成长之旅</span>
             </p>
             <div class="jump-contanier" />
             <div class="start">
-                <button class="start-button" @click.prevent>开启我的大学时光机</button>
+                <button class="start-button" @click.prevent="nextPage(1)">开启我的大学时光机</button>
             </div>
         </div>
 
-        <div class="page2">
+        <div class="page2" v-show="pageCounter === 2">
 
         </div>
     </div>
 </template>
     
 <script setup>
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import jumpPeopleAni from '../assets/lotties/jumppeople.json'
 import lottie from 'lottie-web'
+
+
+
+// handle page move
+const pageCounter = ref(1)
+const nextPage = (index) => {
+    pageCounter.value = index + 1
+}
+
+
 
 const lottieInstances = []
 
@@ -38,15 +49,25 @@ onMounted(() => {
     setTimeout(() => {
         jumpContainer.setAttribute("style", "opacity: 1;")
         document.querySelector('.start').setAttribute("style", "opacity: 1;")
-    }, 3000);
+    }, 3000)
 })
+
+
 onUnmounted(() => {
     // lottie unmount
+    lottieInstances.forEach((instance) => {
+        instance.destroy()
+    })
 })
 
 </script>
     
 <style scoped>
+.hide {
+    opacity: 0;
+    z-index: -1;
+}
+
 .story {
     padding: 4rem 1rem;
     color: #fff;
@@ -63,6 +84,10 @@ onUnmounted(() => {
 .story>div {
     width: 100%;
     height: 100%;
+}
+
+.page1 {
+    transition: 3s ease;
 }
 
 .page1 .title {
