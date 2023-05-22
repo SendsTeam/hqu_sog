@@ -1,19 +1,20 @@
 <template>
     <div class="story">
 
-        <div class="page1" v-show="pageCounter === 1">
+        <StoryPage class="page1" :index="1" :binding="pageCounter" transition-name="slide">
             <p class="title">'数'说青春:
                 <br /><span class="sub-title">毕业生的成长之旅</span>
             </p>
             <div class="jump-contanier" />
             <div class="start">
-                <button class="start-button" @click.prevent="nextPage(1)">开启我的大学时光机</button>
+                <button class="start-button" @click.prevent="nextPage">开启我的大学时光机</button>
             </div>
-        </div>
+        </StoryPage>
 
-        <div class="page2" v-show="pageCounter === 2">
+        <StoryPage class="page2" :index="2" :binding="pageCounter" transition-name="slide">
+            <button @click="nextPage">dfsajdijsa</button>
+        </StoryPage>
 
-        </div>
     </div>
 </template>
     
@@ -21,13 +22,20 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import jumpPeopleAni from '../assets/lotties/jumppeople.json'
 import lottie from 'lottie-web'
+import StoryPage from '../components/StoryPage.vue'
 
 
 
 // handle page move
 const pageCounter = ref(1)
-const nextPage = (index) => {
-    pageCounter.value = index + 1
+const pageTrans = ref(true)
+const nextPage = () => {
+    setTimeout(() => {
+        pageCounter.value += 1
+    }, 300)
+}
+const lastPage = () => {
+    pageCounter.value -= 1
 }
 
 
@@ -63,11 +71,6 @@ onUnmounted(() => {
 </script>
     
 <style scoped>
-.hide {
-    opacity: 0;
-    z-index: -1;
-}
-
 .story {
     padding: 4rem 1rem;
     color: #fff;
@@ -86,9 +89,6 @@ onUnmounted(() => {
     height: 100%;
 }
 
-.page1 {
-    transition: 3s ease;
-}
 
 .page1 .title {
     font-size: 3rem;
@@ -165,12 +165,30 @@ onUnmounted(() => {
         -2px 2px 2px rgb(209 132 0),
         -2px 2px 2px rgb(209 132 0);
     box-shadow: 0 10px 0px 0px #f39c12;
-    transition: all .6s;
+    transition: all .2s;
 }
 
 .page1 .start-button:active {
     background-color: #fcdc5e;
     box-shadow: 0px 1px 0px 0px #f39c12;
     transform: translateY(9px);
+}
+
+
+.page2 {
+    animation: fadeIn;
+    animation-duration: .5s;
+}
+</style>
+
+<style>
+.slide-enter-active,
+.slide-leave-active {
+    transition: transform 1s;
+}
+
+.slide-enter,
+.slide-leave-to {
+    transform: translateY(-100%);
 }
 </style>

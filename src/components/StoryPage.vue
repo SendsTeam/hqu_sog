@@ -1,17 +1,62 @@
 <template>
     <transition :name="props.transitionName">
-        <slot v-if="index"></slot>
+        <div class="storyPage" v-if="showStatus">
+            <slot></slot>
+        </div>
     </transition>
 </template>
     
 <script setup>
+import { watchEffect, ref } from 'vue'
+
+
 const props = defineProps({
-    transitionName: String,
+    transitionName: {
+        type: String,
+        default: "default"
+    }
+    ,
     index: {
         type: Number,
         required: true
+    },
+    binding: {
+        type: Number,
+        required: true
+    },
+})
+
+const showStatus = ref(props.index === 1 ? true : false)
+watchEffect(() => {
+    if (props.binding === props.index) {
+        setTimeout(() => {
+            showStatus.value = true
+        }, 200)//等待下一个渲染周期
+    } else {
+        showStatus.value = false
     }
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.storyPage {
+    width: 100%;
+    height: 100%;
+}
+
+.default-enter-active {
+    transition: opacity .5s;
+}
+
+.default-enter {
+    opacity: 0;
+}
+
+.default-leave-active {
+    transition: opacity .8s;
+}
+
+.default-leave-to {
+    opacity: 0;
+}
+</style>
