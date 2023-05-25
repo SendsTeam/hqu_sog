@@ -2,9 +2,8 @@
     <div class="story">
 
         <router-view v-slot="{ Component }">
-            <transition mode="out-in" :enter-active-class="'animate__animated animate__' + enterAni"
-                :leave-active-class="'animate__animated animate__' + leaveAni">
-                <component :is="Component" :enterAni="enterAni" />
+            <transition mode="out-in" :enter-active-class="enterAni" :leave-active-class="leaveAni">
+                <component :is="Component" @enterAniChange="changeEnterAni" @leaveAniChange="changeLeaveAni" />
             </transition>
         </router-view>
 
@@ -13,19 +12,19 @@
 </template>
     
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { ref } from 'vue'
 
-const enterAni = ref('fadeInUp')
-const leaveAni = ref('fadeOutUp')
+// animation
+const enterAni = ref('animate__animated animate__fadeInUp')
+const leaveAni = ref('animate__animated animate__fadeOutUp')
 
-onMounted(() => {
+const changeEnterAni = (className) => {
+    enterAni.value = className
+}
 
-
-})
-
-onUnmounted(() => {
-
-})
+const changeLeaveAni = (className) => {
+    leaveAni.value = className
+}
 
 </script>
     
