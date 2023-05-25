@@ -17,18 +17,12 @@ import { onBeforeRouteUpdate } from 'vue-router'
 // animation
 const enterAni = ref('animate__animated animate__fadeInUp')
 const leaveAni = ref('animate__animated animate__fadeOutUp')
-// 几个页面对应注册几个动画
-const allPageAni = [
-    { enterAni: 'animate__animated animate__fadeInUp', leaveAni: 'animate__animated animate__fadeOutUp' },
-    { enterAni: 'animate__animated animate__fadeInUpBig', leaveAni: 'animate__animated animate__flipOutX' },
-    { enterAni: '', leaveAni: '' }
-]
 // 路由信息更改时
 onBeforeRouteUpdate((to, from, next) => {
-    const nextIndex = to.path.match(/\/story\/(\d+)/)[1] - 1
-    const nowIndex = from.path.match(/\/story\/(\d+)/)[1] - 1
-    enterAni.value = allPageAni[nextIndex].enterAni
-    leaveAni.value = allPageAni[nowIndex].leaveAni
+    const nextIndex = to.path.match(/\/story\/(\d+)/)[1]
+    const nowIndex = from.path.match(/\/story\/(\d+)/)[1]
+    enterAni.value = 'pageAniEnter' + nextIndex
+    leaveAni.value = 'pageAniLeave' + nowIndex
     next()
 })
 
@@ -47,16 +41,5 @@ onBeforeRouteUpdate((to, from, next) => {
     bottom: 0;
     right: 0;
     overflow: hidden;
-}
-</style>
-<style>
-.slide-enter-active,
-.slide-leave-active {
-    transition: transform 1s;
-}
-
-.slide-enter,
-.slide-leave-to {
-    transform: translateY(-100%);
 }
 </style>

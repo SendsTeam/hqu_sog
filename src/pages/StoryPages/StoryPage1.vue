@@ -143,3 +143,15 @@ onUnmounted(() => {
 }
 </style>
 
+<style>
+/* 固定格式 进出场动画 */
+.pageAniEnter1 {
+    animation: fadeIn;
+    animation-duration: .6s;
+}
+
+.pageAniLeave1 {
+    animation: bounceOut;
+    animation-duration: 1s;
+}
+</style>
