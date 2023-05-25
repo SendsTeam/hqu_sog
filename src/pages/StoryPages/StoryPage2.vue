@@ -5,15 +5,16 @@
 </template>
     
 <script setup>
-import { useRouter } from 'vue-router'
 import StarAni from '../../assets/lotties/star.json'
 import { onMounted, onUnmounted } from 'vue'
 import lottie from 'lottie-web'
+import { useRouter } from "vue-router"
+import { nextPage, lastPage } from '../../utils/move.js'
 
+//router
 const router = useRouter()
-const nextPage = () => {
-    router.push('/story/3')
-}
+
+
 
 let lottieStar = null
 onMounted(() => {
@@ -26,6 +27,7 @@ onMounted(() => {
         autoplay: true,
         animationData: StarAni,
     })
+
 })
 onUnmounted(() => {
     lottieStar.destroy()

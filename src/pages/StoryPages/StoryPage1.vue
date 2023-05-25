@@ -5,7 +5,7 @@
         </p>
         <div class="jump-contanier" />
         <div class="start">
-            <button class="start-button" @click.prevent="nextPage">开启我的大学时光机</button>
+            <button class="start-button" @click.prevent="nextPage(router)">开启我的大学时光机</button>
         </div>
     </div>
 </template>
@@ -14,12 +14,11 @@
 import { onMounted, onUnmounted } from 'vue'
 import jumpPeopleAni from '../../assets/lotties/jumppeople.json'
 import lottie from 'lottie-web'
-import { useRouter } from 'vue-router'
+import { useRouter } from "vue-router"
+import { nextPage, lastPage } from '../../utils/move.js'
 
+//router
 const router = useRouter()
-const nextPage = () => {
-    router.push('/story/2')
-}
 
 //lottie
 let lottieInstance = null
