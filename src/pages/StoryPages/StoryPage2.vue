@@ -5,10 +5,6 @@
 </template>
     
 <script setup>
-const props = defineProps({
-    enterAni: String,
-    leaveAni: String
-})
 </script>
     
 <style scoped>

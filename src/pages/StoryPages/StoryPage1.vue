@@ -16,15 +16,9 @@ import jumpPeopleAni from '../../assets/lotties/jumppeople.json'
 import lottie from 'lottie-web'
 import { useRouter } from 'vue-router'
 
-const props = defineProps({
-    enterAni: String,
-    leaveAni: String
-})
 
 
 const router = useRouter()
-
-
 const nextPage = () => {
     router.push('/story/2')
 }
