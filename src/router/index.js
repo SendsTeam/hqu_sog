@@ -1,6 +1,9 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import Landing from '../pages/Landing.vue'
+
 import Story from '../pages/Story.vue'
+import StoryPage1 from '../pages/StoryPages/StoryPage1.vue'
+import StoryPage2 from '../pages/StoryPages/StoryPage2.vue'
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -12,6 +15,20 @@ const router = createRouter({
         {
             path: "/story",
             component: Story,
+            children: [
+                {
+                    path: "/story",
+                    redirect: "/story/1"
+                },
+                {
+                    path: "1",
+                    component: StoryPage1
+                },
+                {
+                    path: "2",
+                    component: StoryPage2
+                }
+            ]
         },
         // {
         //     path: "/adminlogin",

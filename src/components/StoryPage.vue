@@ -1,5 +1,5 @@
 <template>
-    <transition :name="props.transitionName">
+    <transition :name="props.transitionName" mode="out-in">
         <div class="storyPage" v-if="showStatus">
             <slot></slot>
         </div>
@@ -29,9 +29,7 @@ const props = defineProps({
 const showStatus = ref(props.index === 1 ? true : false)
 watchEffect(() => {
     if (props.binding === props.index) {
-        setTimeout(() => {
-            showStatus.value = true
-        }, 200)//等待下一个渲染周期
+        showStatus.value = true
     } else {
         showStatus.value = false
     }
