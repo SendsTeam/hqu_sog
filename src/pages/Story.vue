@@ -19,8 +19,8 @@ const enterAni = ref('animate__animated animate__fadeInUp')
 const leaveAni = ref('animate__animated animate__fadeOutUp')
 // 几个页面对应注册几个动画
 const allPageAni = [
-    { enterAni: '', leaveAni: '' },
-    { enterAni: '', leaveAni: '' },
+    { enterAni: 'animate__animated animate__fadeInUp', leaveAni: 'animate__animated animate__fadeOutUp' },
+    { enterAni: 'animate__animated animate__fadeInUpBig', leaveAni: 'animate__animated animate__flipOutX' },
     { enterAni: '', leaveAni: '' }
 ]
 // 路由信息更改时
