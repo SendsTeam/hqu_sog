@@ -3,7 +3,7 @@
 
         <router-view v-slot="{ Component }">
             <transition mode="out-in" :enter-active-class="enterAni" :leave-active-class="leaveAni">
-                <component :is="Component" @enterAniChange="changeEnterAni" @leaveAniChange="changeLeaveAni" />
+                <component :is="Component" />
             </transition>
         </router-view>
 
@@ -13,18 +13,25 @@
     
 <script setup>
 import { ref } from 'vue'
-
+import { onBeforeRouteUpdate } from 'vue-router'
 // animation
 const enterAni = ref('animate__animated animate__fadeInUp')
 const leaveAni = ref('animate__animated animate__fadeOutUp')
+// 几个页面对应注册几个动画
+const allPageAni = [
+    { enterAni: '', leaveAni: '' },
+    { enterAni: '', leaveAni: '' },
+    { enterAni: '', leaveAni: '' }
+]
+// 路由信息更改时
+onBeforeRouteUpdate((to, from, next) => {
+    const nextIndex = to.path.match(/\/story\/(\d+)/)[1] - 1
+    const nowIndex = from.path.match(/\/story\/(\d+)/)[1] - 1
+    enterAni.value = allPageAni[nextIndex].enterAni
+    leaveAni.value = allPageAni[nowIndex].leaveAni
+    next()
+})
 
-const changeEnterAni = (className) => {
-    enterAni.value = className
-}
-
-const changeLeaveAni = (className) => {
-    leaveAni.value = className
-}
 
 </script>
     
