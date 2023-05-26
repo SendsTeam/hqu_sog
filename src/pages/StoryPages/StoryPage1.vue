@@ -25,6 +25,7 @@ let lottieInstance = null
 
 onMounted(() => {
 
+
     //page1 jump lottie
     const jumpContainer = document.querySelector('.jump-contanier')
     lottieInstance = lottie.loadAnimation({
@@ -37,6 +38,7 @@ onMounted(() => {
     setTimeout(() => {
         jumpContainer.setAttribute("style", "opacity: 1;")
         document.querySelector('.start').setAttribute("style", "opacity: 1;")
+        document.querySelector('.title').classList.add('ani-bounce')
     }, 3000)
 
 })
@@ -64,11 +66,45 @@ onUnmounted(() => {
 
 
     display: inline-block;
-    opacity: 0;
-    animation: fadeInDown;
-    animation-duration: 1.5s;
-    animation-delay: 1s;
-    animation-fill-mode: forwards;
+    animation: 2s ease CustomfadeInDonw;
+}
+
+@keyframes CustomfadeInDonw {
+    0% {
+        transform: translateY(-200%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.ani-bounce {
+    animation: 3s linear bounce infinite !important;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    25% {
+        transform: translateY(10%);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
+
+    75% {
+        ttransform: translateY(-10%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
 
 .page1 .sub-title {
@@ -133,6 +169,31 @@ onUnmounted(() => {
         -2px 2px 2px rgb(209 132 0);
     box-shadow: 0 10px 0px 0px #f39c12;
     transition: all .2s;
+
+
+    animation: 3s linear start-button-dance infinite;
+}
+
+@keyframes start-button-dance {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.05);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    75% {
+        transform: scale(.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .page1 .start-button:active {
@@ -150,7 +211,7 @@ onUnmounted(() => {
 }
 
 .pageAniLeave1 {
-    animation: bounceOut;
+    animation: fadeOutUp;
     animation-duration: 1s;
 }
 </style>
