@@ -1,0 +1,62 @@
+/* 自定义ani */
+@keyframes CustomFadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes CustomFadeInDonw {
+    0% {
+        transform: translateY(-200%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes CustomBounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    25% {
+        transform: translateY(10%);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
+
+    75% {
+        ttransform: translateY(-10%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes CustomFadeInUp {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* common */
+.shouldAni {
+    opacity: 0;
+}

@@ -3,6 +3,7 @@ import App from './App.vue'
 import lottie from 'lottie-web'
 import graduatePerson from './assets/lotties/graduateperson.json'
 import 'animate.css/animate.min.css'
+import './assets/css/common.css'
 import router from './router'
 
 const app = createApp(App)

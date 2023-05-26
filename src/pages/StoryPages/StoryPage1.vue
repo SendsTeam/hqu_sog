@@ -3,51 +3,67 @@
         <p class="title">'数'说青春:
             <br /><span class="sub-title">毕业生的成长之旅</span>
         </p>
-        <div class="jump-contanier" />
+        <div class="jump-container" />
         <div class="start">
-            <button class="start-button" @click.prevent="nextPage(router)">开启我的大学时光机</button>
+            <button class="start-button" @click.prevent="next" :disabled="!clickAble">开启我的大学时光机</button>
         </div>
+        <div class="paper-container" />
     </div>
 </template>
     
 <script setup>
-import { onMounted, onUnmounted } from 'vue'
-import jumpPeopleAni from '../../assets/lotties/jumppeople.json'
+import { ref, onMounted, onUnmounted } from 'vue'
+import JumpAni from '../../assets/lotties/jumppeople.json'
+import PaperAni from '../../assets/lotties/paperplane.json'
 import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
-import { nextPage, lastPage } from '../../utils/move.js'
+import { nextPage } from '../../utils/move.js'
 
 //router
 const router = useRouter()
 
+//button
+const clickAble = ref(true)
+const next = () => {
+    clickAble.value = false
+    const containerJump = document.querySelector('.jump-container')
+    containerJump.removeAttribute('style')
+    containerJump.classList.add('jump-container-leave')
+    document.querySelector('.start-button').classList.add('start-button-leave')
+    setTimeout(() => { nextPage(router) }, 1000)
+}
+
 //lottie
-let lottieInstance = null
+let lottieInstances = []
 
-onMounted(() => {
+onMounted(async () => {
 
-
-    //page1 jump lottie
-    const jumpContainer = document.querySelector('.jump-contanier')
-    lottieInstance = lottie.loadAnimation({
-        container: jumpContainer,
+    //jump lottie
+    const containerJump = document.querySelector('.jump-container')
+    lottieInstances.push(lottie.loadAnimation({
+        container: containerJump,
         renderer: "canvas",
         loop: true,
         autoplay: true,
-        animationData: jumpPeopleAni,
-    })
+        animationData: JumpAni,
+    }))
     setTimeout(() => {
-        jumpContainer.setAttribute("style", "opacity: 1;")
+        containerJump.setAttribute("style", "opacity: 1;")
         document.querySelector('.start').setAttribute("style", "opacity: 1;")
         document.querySelector('.title').classList.add('ani-bounce')
     }, 3000)
+
+    //paper plane
 
 })
 
 
 onUnmounted(() => {
     // lottie unmount
-    lottieInstance.destroy()
-    lottieInstance = null
+    lottieInstances.forEach((instance) => {
+        instance.destroy()
+    })
+    lottieInstances = null
 })
 
 </script>
@@ -56,6 +72,7 @@ onUnmounted(() => {
 .page1 {
     width: 100%;
     height: 100%;
+    --leave-ani-duration: 1s
 }
 
 
@@ -66,46 +83,16 @@ onUnmounted(() => {
 
 
     display: inline-block;
-    animation: 2s ease CustomfadeInDonw;
+    animation: 2s ease CustomFadeInDonw;
 }
 
-@keyframes CustomfadeInDonw {
-    0% {
-        transform: translateY(-200%);
-        opacity: 0;
-    }
 
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
 
 .ani-bounce {
-    animation: 3s linear bounce infinite !important;
+    animation: 3s linear CustomBounce infinite !important;
 }
 
-@keyframes bounce {
-    0% {
-        transform: translateY(0);
-    }
 
-    25% {
-        transform: translateY(10%);
-    }
-
-    50% {
-        transform: translateY(0);
-    }
-
-    75% {
-        ttransform: translateY(-10%);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
 
 .page1 .sub-title {
     font-size: 2rem;
@@ -121,7 +108,7 @@ onUnmounted(() => {
     animation-fill-mode: forwards;
 }
 
-.page1 .jump-contanier {
+.page1 .jump-container {
     position: absolute;
     display: flex;
     z-index: -1;
@@ -138,6 +125,14 @@ onUnmounted(() => {
     animation-duration: 2s;
     animation-delay: 2.5s;
 }
+
+.page1 .jump-container-leave {
+    animation: CustomFadeOut !important;
+    animation-duration: var(--leave-ani-duration) !important;
+    animation-fill-mode: forwards !important;
+}
+
+
 
 .page1 .start {
     position: fixed;
@@ -172,6 +167,12 @@ onUnmounted(() => {
 
 
     animation: 3s linear start-button-dance infinite;
+}
+
+.page1 .start-button-leave {
+    animation: zoomOut !important;
+    animation-duration: var(--leave-ani-duration) !important;
+    animation-fill-mode: forwards !important;
 }
 
 @keyframes start-button-dance {
