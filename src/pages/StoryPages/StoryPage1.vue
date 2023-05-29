@@ -14,7 +14,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import JumpAni from '../../assets/lotties/jumppeople.json'
-import PaperAni from '../../assets/lotties/paperplane.json'
 import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
 import { nextPage } from '../../utils/move.js'

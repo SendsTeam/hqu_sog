@@ -4,9 +4,9 @@
         <div class="teach-container" />
         <div class="sub-title">别来无恙</div>
         <div class="paragraph1">
-            <p class="shouldAni" delayTime="1">在大学四载间，</p>
-            <p class="shouldAni" delayTime="2">你参与了n场盛装课堂之旅，</p>
-            <p class="shouldAni" delayTime="3">饱览了知识的辽阔河山。</p>
+            <p class="shouldAni" delayTime="1000">在大学四载间，</p>
+            <p class="shouldAni" delayTime="2000">你参与了n场盛装课堂之旅，</p>
+            <p class="shouldAni" delayTime="3000">饱览了知识的辽阔河山。</p>
         </div>
 
     </div>
@@ -19,6 +19,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
 import { nextPage, lastPage } from '../../utils/move.js'
+import { animate } from '../../utils/paraAnimate.js'
 
 //router
 const router = useRouter()
@@ -51,6 +52,8 @@ onMounted(async () => {
 
     // paragraph 
     showStatus.value = true
+    animate('.paragraph1')
+
 
 })
 onUnmounted(() => {
