@@ -2,12 +2,15 @@
     <div class="page2">
         <div class="star-container" />
         <div class="teach-container" />
-        <div class="sub-title">别来无恙</div>
+        <div class="sub-title">你数过吗？</div>
         <div class="paragraph1">
-            <p class="shouldAni" delayTime="1000">在大学四载间，</p>
-            <p class="shouldAni" delayTime="2000">你参与了n场盛装课堂之旅，</p>
-            <p class="shouldAni" delayTime="3000">饱览了知识的辽阔河山。</p>
+            <p class="shouldAni" delayTime="2000">在大学四载间，</p>
+            <p class="shouldAni" delayTime="3500">你参与了
+                <DanceNumber :num="1000" :dur="5000" className="danceNum1" />场盛装课堂之旅，
+            </p>
+            <p class="shouldAni" delayTime="5000">饱览了知识的辽阔河山。</p>
         </div>
+        <button class="nextButton" @click="next" :disabled="!clickAble">继续 >></button>
 
     </div>
 </template>
@@ -20,12 +23,19 @@ import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
 import { nextPage, lastPage } from '../../utils/move.js'
 import { animate } from '../../utils/paraAnimate.js'
+import DanceNumber from '../../components/DanceNumber.vue'
 
 //router
 const router = useRouter()
 
-//paragraph
-const showStatus = ref(false)
+
+//next
+const clickAble = ref(true)
+const next = () => {
+
+}
+
+
 
 
 let lottieInstances = []
@@ -51,7 +61,6 @@ onMounted(async () => {
     }))
 
     // paragraph 
-    showStatus.value = true
     animate('.paragraph1')
 
 
@@ -107,7 +116,7 @@ onUnmounted(() => {
 
 .page2 .sub-title {
     font-size: 2rem;
-    color: rgb(245, 79, 190);
+    color: rgb(79, 245, 162);
     text-shadow: 3px 3px 2px #76b3ec;
 
 
@@ -120,6 +129,18 @@ onUnmounted(() => {
 .page2 .paragraph1 {
     font-size: 1.5rem;
     margin-top: 1rem;
+}
+
+.page2 .nextButton {
+    position: absolute;
+    bottom: 4rem;
+    right: 0;
+    height: 3rem;
+    width: 5rem;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    border: 0;
+    text-align: center;
 }
 </style>
 
@@ -134,5 +155,18 @@ onUnmounted(() => {
 .pageAniLeave2 {
     animation: fadeOut;
     animation-duration: .6s;
+}
+
+
+/* 数字 */
+.danceNum1 {
+    font-size: 2.4rem;
+    color: aqua;
+    text-shadow: 0 0 5px #ff66f2;
+    display: inline-block;
+
+    animation: 2s heartBeat infinite;
+    animation-delay: 2.5s;
+
 }
 </style>

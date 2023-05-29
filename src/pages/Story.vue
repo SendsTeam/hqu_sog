@@ -23,7 +23,9 @@ onBeforeRouteUpdate((to, from, next) => {
     const nowIndex = from.path.match(/\/story\/(\d+)/)[1]
     enterAni.value = 'pageAniEnter' + nextIndex
     leaveAni.value = 'pageAniLeave' + nowIndex
-    next()
+    if (nextIndex > nowIndex) {
+        next()
+    }
 })
 
 
