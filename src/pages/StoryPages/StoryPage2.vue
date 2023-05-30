@@ -10,7 +10,8 @@
             </p>
             <p class="shouldAni" delayTime="5000">饱览了知识的辽阔河山。</p>
         </div>
-        <button class="nextButton" @click="next" :disabled="!clickAble">继续 >></button>
+        <!-- <button class="nextButton" @click="next" :disabled="!clickAble">继续 >></button> -->
+        <SlideButton :delayTime="6000" @bt-click="next">继续 >></SlideButton>
 
     </div>
 </template>
@@ -18,21 +19,26 @@
 <script setup>
 import StarAni from '../../assets/lotties/star.json'
 import TeachAni from '../../assets/lotties/teacher.json'
-import { ref, onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
-import { nextPage, lastPage } from '../../utils/move.js'
+import { nextPage } from '../../utils/move.js'
 import { animate } from '../../utils/paraAnimate.js'
 import DanceNumber from '../../components/DanceNumber.vue'
+import SlideButton from '../../components/SideButton.vue'
+import { leaveAni } from '../../utils/leave.js'
 
 //router
 const router = useRouter()
 
 
 //next
-const clickAble = ref(true)
-const next = () => {
-
+const next = async () => {
+    leaveAni('teach-container')
+    leaveAni('star-container')
+    leaveAni('sub-title')
+    leaveAni('paragraph1')
+    setTimeout(() => { nextPage(router) }, 2000)
 }
 
 
@@ -97,6 +103,10 @@ onUnmounted(() => {
     animation-fill-mode: forwards;
 }
 
+.page2 .star-container-leave {
+    animation: .6s fadeOut ease !important;
+}
+
 .page2 .teach-container {
     position: absolute;
     z-index: -1;
@@ -114,6 +124,10 @@ onUnmounted(() => {
 
 }
 
+.page2 .teach-container-leave {
+    animation: .6s fadeOut ease !important;
+}
+
 .page2 .sub-title {
     font-size: 2rem;
     color: rgb(79, 245, 162);
@@ -126,22 +140,18 @@ onUnmounted(() => {
     animation-delay: 2.5s;
 }
 
+.page2 .sub-title-leave {
+    animation: .6s backOutUp ease forwards !important;
+}
+
 .page2 .paragraph1 {
     font-size: 1.5rem;
     margin-top: 1rem;
     line-height: 3rem;
 }
 
-.page2 .nextButton {
-    position: absolute;
-    bottom: 4rem;
-    right: 0;
-    height: 4rem;
-    width: 8rem;
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
-    border: 0;
-    text-align: center;
+.page2 .paragraph1-leave {
+    animation: 3s zoomOut ease forwards !important;
 }
 </style>
 

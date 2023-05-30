@@ -1,15 +1,17 @@
-<!-- 模板示例 -->
-
 <template>
     <div class="page2">
         <div class="star-container" />
         <div class="teach-container" />
-        <div class="sub-title">别来无恙</div>
-        <!-- <div class="paragraph1">
-            <p>在大学四载间，</p>
-            <p>你参与了n场盛装课堂之旅，</p>
-            <p>饱览了知识的辽阔河山。</p>
-        </div> -->
+        <div class="sub-title">你数过吗？</div>
+        <div class="paragraph1">
+            <p class="shouldAni" delayTime="2000">在大学四载间，</p>
+            <p class="shouldAni" delayTime="3500">你参与了
+                <DanceNumber :num="700" :dur="3000" :del="3000" className="danceNum1" />场盛装课堂之旅，
+            </p>
+            <p class="shouldAni" delayTime="5000">饱览了知识的辽阔河山。</p>
+        </div>
+        <!-- <button class="nextButton" @click="next" :disabled="!clickAble">继续 >></button> -->
+        <SlideButton :delayTime="6000" @bt-click="next">继续 >></SlideButton>
 
     </div>
 </template>
@@ -20,10 +22,26 @@ import TeachAni from '../../assets/lotties/teacher.json'
 import { onMounted, onUnmounted } from 'vue'
 import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
-import { nextPage, lastPage } from '../../utils/move.js'
+import { nextPage } from '../../utils/move.js'
+import { animate } from '../../utils/paraAnimate.js'
+import DanceNumber from '../../components/DanceNumber.vue'
+import SlideButton from '../../components/SideButton.vue'
+import { leaveAni } from '../../utils/leave.js'
 
 //router
 const router = useRouter()
+
+
+//next
+const next = async () => {
+    leaveAni('teach-container')
+    leaveAni('star-container')
+    leaveAni('sub-title')
+    leaveAni('paragraph1')
+    // setTimeout(() => { nextPage(router) }, 2000)
+}
+
+
 
 
 let lottieInstances = []
@@ -47,6 +65,10 @@ onMounted(async () => {
         autoplay: true,
         animationData: TeachAni,
     }))
+
+    // paragraph 
+    animate('.paragraph1')
+
 
 })
 onUnmounted(() => {
@@ -81,12 +103,16 @@ onUnmounted(() => {
     animation-fill-mode: forwards;
 }
 
+.page2 .star-container-leave {
+    animation: .6s fadeOut ease !important;
+}
+
 .page2 .teach-container {
     position: absolute;
     z-index: -1;
     opacity: 0;
 
-    top: 0;
+    top: 4rem;
     left: 0;
     bottom: 0;
     right: 0;
@@ -98,10 +124,14 @@ onUnmounted(() => {
 
 }
 
+.page2 .teach-container-leave {
+    animation: .6s fadeOut ease !important;
+}
+
 .page2 .sub-title {
     font-size: 2rem;
-    color: rgb(208, 230, 130);
-    text-shadow: 3px 3px 2px #e376ec;
+    color: rgb(79, 245, 162);
+    text-shadow: 3px 3px 2px #76b3ec;
 
 
     width: 100%;
@@ -110,35 +140,44 @@ onUnmounted(() => {
     animation-delay: 2.5s;
 }
 
+.page2 .sub-title-leave {
+    animation: .6s backOutUp ease forwards !important;
+}
+
 .page2 .paragraph1 {
     font-size: 1.5rem;
     margin-top: 1rem;
+    line-height: 3rem;
+}
+
+.page2 .paragraph1-leave {
+    animation: 3s zoomOut ease forwards !important;
 }
 </style>
 
 <style>
 /* 固定格式 进出场动画 */
-.pageAniEnter2 {
+.pageAniEnter3 {
     animation: CustomFadeInUp;
-    animation-duration: 1s;
+    animation-duration: .6s;
 }
 
 
-.pageAniLeave2 {
+.pageAniLeave3 {
     animation: fadeOut;
     animation-duration: .6s;
 }
 
-/* 自定义 */
-@keyframes CustomFadeInUp {
-    0% {
-        transform: translateY(100%);
-        opacity: 0;
-    }
 
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+/* 数字 */
+.danceNum1 {
+    font-size: 2.4rem;
+    color: aqua;
+    text-shadow: 0 0 5px #ff66f2;
+    display: inline-block;
+
+    animation: 2s heartBeat infinite;
+    animation-delay: 5.5s;
+
 }
 </style>

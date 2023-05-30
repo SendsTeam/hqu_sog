@@ -4,6 +4,7 @@ import Landing from '../pages/Landing.vue'
 import Story from '../pages/Story.vue'
 import StoryPage1 from '../pages/StoryPages/StoryPage1.vue'
 import StoryPage2 from '../pages/StoryPages/StoryPage2.vue'
+import StoryPage3 from '../pages/StoryPages/StoryPage3.vue'
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -27,6 +28,10 @@ const router = createRouter({
                 {
                     path: "2",
                     component: StoryPage2
+                },
+                {
+                    path: "3",
+                    component: StoryPage3
                 }
             ]
         },
