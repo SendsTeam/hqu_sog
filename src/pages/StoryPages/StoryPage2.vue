@@ -6,7 +6,7 @@
         <div class="paragraph1">
             <p class="shouldAni" delayTime="2000">在大学四载间，</p>
             <p class="shouldAni" delayTime="3500">你参与了
-                <DanceNumber :num="1000" :dur="5000" className="danceNum1" />场盛装课堂之旅，
+                <DanceNumber :num="700" :dur="3000" :del="3000" className="danceNum1" />场盛装课堂之旅，
             </p>
             <p class="shouldAni" delayTime="5000">饱览了知识的辽阔河山。</p>
         </div>
@@ -102,7 +102,7 @@ onUnmounted(() => {
     z-index: -1;
     opacity: 0;
 
-    top: 0;
+    top: 4rem;
     left: 0;
     bottom: 0;
     right: 0;
@@ -129,16 +129,17 @@ onUnmounted(() => {
 .page2 .paragraph1 {
     font-size: 1.5rem;
     margin-top: 1rem;
+    line-height: 3rem;
 }
 
 .page2 .nextButton {
     position: absolute;
     bottom: 4rem;
     right: 0;
-    height: 3rem;
-    width: 5rem;
-    border-top-left-radius: 1.5rem;
-    border-bottom-left-radius: 1.5rem;
+    height: 4rem;
+    width: 8rem;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
     border: 0;
     text-align: center;
 }
@@ -148,7 +149,7 @@ onUnmounted(() => {
 /* 固定格式 进出场动画 */
 .pageAniEnter2 {
     animation: CustomFadeInUp;
-    animation-duration: 1s;
+    animation-duration: .6s;
 }
 
 
@@ -166,7 +167,7 @@ onUnmounted(() => {
     display: inline-block;
 
     animation: 2s heartBeat infinite;
-    animation-delay: 2.5s;
+    animation-delay: 5.5s;
 
 }
 </style>

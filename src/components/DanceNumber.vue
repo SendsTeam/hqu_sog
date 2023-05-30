@@ -13,25 +13,33 @@ const props = defineProps({
         type: Number,
         default: 5000
     },
+    del: {
+        type: Number,
+        default: 0
+    },
     className: {
         type: String,
         default: null
     }
 })
-const showNum = ref(props.num)
+const showNum = ref(0)
 const instance = ref(null)
 
 onMounted(() => {
     if (props.className) {
         instance.value.classList.replace('default', props.className)
     }
-    const timer = setInterval(() => {
-        showNum.value = Math.floor(Math.random() * props.num)
-    }, 100)
+
+    const stepNum = parseInt(props.num / (props.dur / 100))
     setTimeout(() => {
-        clearInterval(timer)
-        showNum.value = props.num
-    }, props.dur)
+        const timer = setInterval(() => {
+            showNum.value += stepNum
+        }, 100)
+        setTimeout(() => {
+            clearInterval(timer)
+            showNum.value = props.num
+        }, props.dur)
+    }, props.del)
 })
 </script>
 <style scoped>

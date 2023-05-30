@@ -14,6 +14,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import JumpAni from '../../assets/lotties/jumppeople.json'
+import PaperAni from '../../assets/lotties/paperplane.json'
 import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
 import { nextPage } from '../../utils/move.js'
@@ -29,7 +30,10 @@ const next = () => {
     containerJump.removeAttribute('style')
     containerJump.classList.add('jump-container-leave')
     document.querySelector('.start-button').classList.add('start-button-leave')
-    setTimeout(() => { nextPage(router) }, 1000)
+
+    //paperPlane
+    document.querySelector('.paper-container').classList.add('paper-container-show')
+    setTimeout(() => { nextPage(router) }, 1500)
 }
 
 //lottie
@@ -53,6 +57,14 @@ onMounted(async () => {
     }, 3000)
 
     //paper plane
+    const containerPaper = document.querySelector('.paper-container')
+    lottieInstances.push(lottie.loadAnimation({
+        container: containerPaper,
+        renderer: "canvas",
+        loop: true,
+        autoplay: true,
+        animationData: PaperAni,
+    }))
 
 })
 
@@ -201,6 +213,38 @@ onUnmounted(() => {
     box-shadow: 0px 1px 0px 0px #f39c12;
     transform: translateY(9px);
 }
+
+.page1 .paper-container {
+    position: absolute;
+    bottom: 40vh;
+    left: -15rem;
+    width: 15rem;
+    height: 15rem;
+    z-index: -1;
+    opacity: 0;
+}
+
+.page1 .paper-container-show {
+    z-index: 1 !important;
+    animation: 1.5s paperAni linear forwards;
+}
+
+@keyframes paperAni {
+    0% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+
+    25% {
+        opacity: 1;
+        transform: translateX(25vw);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(150vw);
+    }
+}
 </style>
 
 <style>
@@ -212,6 +256,6 @@ onUnmounted(() => {
 
 .pageAniLeave1 {
     animation: fadeOutUp;
-    animation-duration: 1s;
+    animation-duration: .6s;
 }
 </style>
