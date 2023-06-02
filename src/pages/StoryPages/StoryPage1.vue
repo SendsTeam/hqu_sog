@@ -46,14 +46,15 @@ onMounted(async () => {
     lottieInstances.push(lottie.loadAnimation({
         container: containerJump,
         renderer: "canvas",
-        loop: true,
-        autoplay: true,
+        loop: false,
+        autoplay: false,
         animationData: JumpAni,
     }))
     setTimeout(() => {
         containerJump.setAttribute("style", "opacity: 1;")
         document.querySelector('.start').setAttribute("style", "opacity: 1;")
         document.querySelector('.title').classList.add('ani-bounce')
+        lottieInstances[0].play()
     }, 3000)
 
     //paper plane

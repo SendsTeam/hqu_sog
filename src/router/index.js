@@ -5,6 +5,9 @@ import Story from '../pages/Story.vue'
 import StoryPage1 from '../pages/StoryPages/StoryPage1.vue'
 import StoryPage2 from '../pages/StoryPages/StoryPage2.vue'
 import StoryPage3 from '../pages/StoryPages/StoryPage3.vue'
+import StoryPage4 from '../pages/StoryPages/StoryPage4.vue'
+import StoryPage5 from '../pages/StoryPages/StoryPage5.vue'
+import StoryPage6 from '../pages/StoryPages/StoryPage6.vue'
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -32,6 +35,18 @@ const router = createRouter({
                 {
                     path: "3",
                     component: StoryPage3
+                },
+                {
+                    path: "4",
+                    component: StoryPage4
+                },
+                {
+                    path: "5",
+                    component: StoryPage5
+                },
+                {
+                    path: "6",
+                    component: StoryPage6
                 }
             ]
         },

@@ -1,14 +1,12 @@
 <template>
-    <div class="page2">
+    <div class="page3">
         <div class="star-container" />
-        <div class="teach-container" />
-        <div class="sub-title">你数过吗？</div>
+        <div class="book-container" />
+        <div class="sub-title">想回到过去吗？</div>
         <div class="paragraph1">
-            <p class="shouldAni" delayTime="2000">在大学四载间，</p>
-            <p class="shouldAni" delayTime="3500">你参与了
-                <DanceNumber :num="700" :dur="3000" :del="3000" className="danceNum1" />场盛装课堂之旅，
-            </p>
-            <p class="shouldAni" delayTime="5000">饱览了知识的辽阔河山。</p>
+            <p class="shouldAni" delayTime="2000">在你进入大学的第 n 周，</p>
+            <p class="shouldAni" delayTime="3500">xxx老师的xxxxxx课上，</p>
+            <p class="shouldAni" delayTime="5000">翻开了在HQU的‘序章’！</p>
         </div>
         <!-- <button class="nextButton" @click="next" :disabled="!clickAble">继续 >></button> -->
         <SlideButton :delayTime="6000" @bt-click="next">继续 >></SlideButton>
@@ -18,13 +16,12 @@
     
 <script setup>
 import StarAni from '../../assets/lotties/star.json'
-import TeachAni from '../../assets/lotties/teacher.json'
+import BookAni from '../../assets/lotties/book.json'
 import { onMounted, onUnmounted } from 'vue'
 import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
 import { nextPage } from '../../utils/move.js'
 import { animate } from '../../utils/paraAnimate.js'
-import DanceNumber from '../../components/DanceNumber.vue'
 import SlideButton from '../../components/SideButton.vue'
 import { leaveAni } from '../../utils/leave.js'
 
@@ -34,11 +31,11 @@ const router = useRouter()
 
 //next
 const next = async () => {
-    leaveAni('teach-container')
+    leaveAni('book-container')
     leaveAni('star-container')
     leaveAni('sub-title')
     leaveAni('paragraph1')
-    // setTimeout(() => { nextPage(router) }, 2000)
+    setTimeout(() => { nextPage(router) }, 1000)
 }
 
 
@@ -56,18 +53,19 @@ onMounted(async () => {
         animationData: StarAni,
     }))
 
-    //teach lottie
-    const containerTeach = document.querySelector('.teach-container')
+    //book lottie
+    const containerBook = document.querySelector('.book-container')
     lottieInstances.push(lottie.loadAnimation({
-        container: containerTeach,
+        container: containerBook,
         renderer: "canvas",
         loop: true,
-        autoplay: true,
-        animationData: TeachAni,
+        autoplay: false,
+        animationData: BookAni,
     }))
+    setTimeout(() => { lottieInstances[1].play() }, 5500)
 
     // paragraph 
-    animate('.paragraph1')
+    animate('.paragraph1', 'paraAniPage3')
 
 
 })
@@ -83,12 +81,12 @@ onUnmounted(() => {
 </script>
     
 <style scoped>
-.page2 {
+.page3 {
     width: 100%;
     height: 100%;
 }
 
-.page2 .star-container {
+.page3 .star-container {
     position: absolute;
     z-index: -1;
     opacity: 0;
@@ -103,11 +101,11 @@ onUnmounted(() => {
     animation-fill-mode: forwards;
 }
 
-.page2 .star-container-leave {
+.page3 .star-container-leave {
     animation: .6s fadeOut ease !important;
 }
 
-.page2 .teach-container {
+.page3 .book-container {
     position: absolute;
     z-index: -1;
     opacity: 0;
@@ -124,11 +122,11 @@ onUnmounted(() => {
 
 }
 
-.page2 .teach-container-leave {
-    animation: .6s fadeOut ease !important;
+.page3 .book-container-leave {
+    animation: .6s lightSpeedOutLeft ease !important;
 }
 
-.page2 .sub-title {
+.page3 .sub-title {
     font-size: 2rem;
     color: rgb(79, 245, 162);
     text-shadow: 3px 3px 2px #76b3ec;
@@ -140,44 +138,37 @@ onUnmounted(() => {
     animation-delay: 2.5s;
 }
 
-.page2 .sub-title-leave {
+.page3 .sub-title-leave {
     animation: .6s backOutUp ease forwards !important;
 }
 
-.page2 .paragraph1 {
+.page3 .paragraph1 {
     font-size: 1.5rem;
     margin-top: 1rem;
     line-height: 3rem;
 }
 
-.page2 .paragraph1-leave {
-    animation: 3s zoomOut ease forwards !important;
+.page3 .paragraph1-leave {
+    animation: 3s flipOutX ease forwards !important;
 }
 </style>
 
 <style>
 /* 固定格式 进出场动画 */
 .pageAniEnter3 {
-    animation: CustomFadeInUp;
+    animation: flipInY;
     animation-duration: .6s;
 }
 
 
 .pageAniLeave3 {
-    animation: fadeOut;
+    animation: flipOutX;
     animation-duration: .6s;
 }
 
-
-/* 数字 */
-.danceNum1 {
-    font-size: 2.4rem;
-    color: aqua;
-    text-shadow: 0 0 5px #ff66f2;
-    display: inline-block;
-
-    animation: 2s heartBeat infinite;
-    animation-delay: 5.5s;
-
+.paraAniPage3 {
+    animation-name: bounceIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 </style>
