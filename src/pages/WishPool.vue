@@ -4,13 +4,13 @@
             许愿池
         </div>
         <div class="danmuPool">
-            <DanmuPool></DanmuPool>
+            <DanmaPool></DanmaPool>
         </div>
     </div>
 </template>
     
 <script setup>
-import DanmuPool from '../components/DanmuPool.vue'
+import DanmaPool from '../components/DanmaPool.vue'
 
 </script>
     
@@ -46,8 +46,8 @@ import DanmuPool from '../components/DanmuPool.vue'
 .danmuPool {
     position: absolute;
     top: 6rem;
-    left: .2rem;
-    right: .2rem;
-    bottom: 6rem;
+    left: .5rem;
+    right: .5rem;
+    bottom: 10rem;
 }
 </style>

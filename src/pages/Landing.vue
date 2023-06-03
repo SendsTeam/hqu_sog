@@ -9,7 +9,7 @@ import { onMounted } from 'vue'
 
 onMounted(() => {
     const router = useRouter()
-    router.push('/wechat')
+    router.push('/wish')
 })
 
 </script>
