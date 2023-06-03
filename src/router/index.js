@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import Landing from '../pages/Landing.vue'
+import Wechat from '../pages/Wechat.vue'
 import WishPool from '../pages/WishPool.vue'
 import Story from '../pages/Story.vue'
 import StoryPage1 from '../pages/StoryPages/StoryPage1.vue'
@@ -54,6 +55,10 @@ const router = createRouter({
             path: "/wish",
             component: WishPool,
         },
+        {
+            path: "/wechat",
+            component: Wechat,
+        }
         // {
         //     path: "/adminlogin",
         //     name: "adminlogin",
