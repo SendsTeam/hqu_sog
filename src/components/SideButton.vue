@@ -14,7 +14,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['bt-click'])
 const instance = ref(null)
-const clickAble = ref(true)
+const clickAble = ref(false)
 const aniProcess = () => {
     emit('bt-click')
     clickAble.value = false
@@ -25,6 +25,7 @@ const aniProcess = () => {
 onMounted(async () => {
     setTimeout(() => {
         instance.value.classList.add('nextButton-show')
+        clickAble.value=true
     }, props.delayTime)
 })
 

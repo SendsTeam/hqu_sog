@@ -182,7 +182,7 @@ onUnmounted(() => {
 }
 
 .page1 .start-button-leave {
-    animation: zoomOut !important;
+    animation: fadeOut !important;
     animation-duration: var(--leave-ani-duration) !important;
     animation-fill-mode: forwards !important;
 }

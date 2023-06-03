@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import Landing from '../pages/Landing.vue'
-
+import WishPool from '../pages/WishPool.vue'
 import Story from '../pages/Story.vue'
 import StoryPage1 from '../pages/StoryPages/StoryPage1.vue'
 import StoryPage2 from '../pages/StoryPages/StoryPage2.vue'
@@ -49,6 +49,10 @@ const router = createRouter({
                     component: StoryPage6
                 }
             ]
+        },
+        {
+            path: "/wish",
+            component: WishPool,
         },
         // {
         //     path: "/adminlogin",
