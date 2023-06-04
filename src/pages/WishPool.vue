@@ -1,7 +1,7 @@
 <template>
     <div class="wish">
         <div class="title">
-            许愿池
+            毕业季许愿池
         </div>
         <div class="danmuPool">
             <DanmaPool></DanmaPool>
@@ -48,6 +48,6 @@ import DanmaPool from '../components/DanmaPool.vue'
     top: 6rem;
     left: .5rem;
     right: .5rem;
-    bottom: 10rem;
+    bottom: 6rem;
 }
 </style>

@@ -1,12 +1,16 @@
 <template>
-    <div class="danmaItem">
-        <img src='http://q1.qlogo.cn/g?b=qq&nk=384637134&s=160' alt="tx" />
-        <span>{{ props.text }}</span>
-        <span class="like"></span>
+    <div class="container">
+        <div class="danmaItem" @click="">
+            <img src='http://q1.qlogo.cn/g?b=qq&nk=384637134&s=160' alt="tx" />
+            <span>{{ props.text }}</span>
+            <span class="like"></span>
+        </div>
     </div>
 </template>
     
 <script setup>
+import { onMounted, ref } from 'vue'
+
 const props = defineProps({
     text: {
         type: String,
@@ -14,28 +18,42 @@ const props = defineProps({
     }
 })
 
+
+
+
+
 </script>
     
 <style scoped>
+.container {
+    padding: .2rem;
+}
+
+
 .danmaItem {
-    display: inline-block;
-    height: 3rem;
-    padding-right: 2rem;
-    font-size: 1.8rem;
-    line-height: 3rem;
+    height: 2rem;
+    font-size: 1.2rem;
+    line-height: 2rem;
     display: flex;
     /* background-color: #fff; */
+    border: 1.2px solid #fff;
+    border-radius: 2rem;
+    padding: .2rem;
+    padding-right: .3rem;
+
+    background: rgba(248, 251, 248, 0.856);
+    overflow: hidden;
+    /* color: rgb(255, 0, 106); */
+    color: black;
 }
+
+
 
 .danmaItem img {
     display: inline-block;
-    height: 3rem;
-    width: 3rem;
-    margin-right: .5rem;
-    border-radius: 3rem;
-}
-
-.danmaItem .like {
-    background-color: #fff;
+    height: 2rem;
+    width: 2rem;
+    margin-right: .2rem;
+    border-radius: 2rem;
 }
 </style>
