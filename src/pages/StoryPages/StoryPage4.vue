@@ -120,16 +120,17 @@ onUnmounted(() => {
     animation-delay: 1.5s;
     animation-duration: 2s;
     animation-fill-mode: forwards;
-
+    animation-timing-function: ease;
 }
 
 @keyframes classRoomCusAni {
-    0% {
+    from {
         opacity: 0;
         transform: translateX(100%);
     }
 
-    100% {
+
+    to {
         opacity: 1;
         transform: translateX(0);
     }

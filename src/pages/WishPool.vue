@@ -7,20 +7,41 @@
             <button class="nav_button__shadow story" type="button">
                 我的故事
             </button>
-            <button class="nav_button__shadow my-danma" type="button">
+            <!-- <button class="nav_button__shadow my-danma" type="button">
                 我的弹幕
-            </button>
+            </button> -->
         </div>
         <div class="danmuPool">
             <DanmaPool />
         </div>
-        <Card />
+
+        <!-- <Card /> -->
     </div>
+    <div class="mask" v-if="loadingSuccess" />
 </template>
     
 <script setup>
 import DanmaPool from '../components/DanmaPool.vue'
 import Card from '../components/Card.vue'
+import { inject, onBeforeMount } from 'vue'
+import { getinfo, checkgraduate } from '../service/axios'
+
+const loadingSuccess = inject('loadingSuccess')
+
+//userinfo checkgraduate
+const userinfo = inject('userinfo')
+onBeforeMount(async () => {
+    if (!userinfo) {
+        userinfo.value = await getinfo()
+    }
+    console.log(await checkgraduate())
+})
+
+
+
+
+
+
 </script>
     
 <style scoped>
@@ -95,5 +116,30 @@ import Card from '../components/Card.vue'
     top: 3rem;
     right: .5rem;
     z-index: 99;
+}
+
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.195);
+    /* 设置透明度 */
+    z-index: 99;
+    /* 设置遮罩层的层级 */
+    pointer-events: none;
+    /* 防止遮挡下方元素的交互 */
+    backdrop-filter: blur(20px);
+
+    animation: 4s maskHide ease forwards;
+}
+
+@keyframes maskHide {
+    to {
+        backdrop-filter: blur(0);
+        opacity: 0;
+        z-index: -1;
+    }
 }
 </style>

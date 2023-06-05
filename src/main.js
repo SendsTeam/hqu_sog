@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp,ref } from 'vue'
 import App from './App.vue'
 import lottie from 'lottie-web'
 import GraduateAni from './assets/lotties/graduateperson.json'
@@ -20,6 +20,8 @@ lottie.loadAnimation({
     animationData: GraduateAni,
 })
 
+// userinfo
+app.provide('userinfo', ref(null))
 
 app.use(router)
 app.mount('#app')

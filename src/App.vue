@@ -9,15 +9,17 @@ import { onMounted, ref } from 'vue'
 import LoadingSuccess from './components/LoadingSuccess.vue'
 import { isInWechat } from './utils/tokenAndWxlogin.js'
 import { useRouter } from 'vue-router'
+import { provide } from 'vue'
 
 const loadingSuccess = ref(false)
+provide('loadingSuccess', loadingSuccess)
 const router = useRouter()
 
 onMounted(() => {
   loadingSuccess.value = true
-  // if (!isInWechat()) {
-  //   router.push('/wechat')
-  // }
+  if (!isInWechat()) {
+    router.push('/wechat')
+  }
 })
 </script>
 

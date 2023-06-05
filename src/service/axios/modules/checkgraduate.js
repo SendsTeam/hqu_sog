@@ -2,7 +2,7 @@ import axios from "../axios.js"
 import { setToken, getToken } from "../../../utils/tokenAndWxlogin.js"
 export default async () => {
     try {
-        const result = await axios.get('/user/login', {
+        const result = await axios.get('/user/checkgraduate', {
             Headers: {
                 token: getToken()
             }
@@ -13,11 +13,9 @@ export default async () => {
             wxRedirect()
         } else {
             if (result.data.code === 200) {
-                return result.data.data
+                return true
             } else {
-                alert('未知错误！')
-                setToken('')
-                wxRedirect()
+                return false
             }
         }
     } catch (err) {

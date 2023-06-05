@@ -17,12 +17,13 @@ export default async (code) => {
                 alert(result.data.msg)
                 wxRedirect()
             } else {
-                alert('未知错误！')
+                alert('未知错误!')
                 wxRedirect()
             }
         }
     } catch (err) {
         console.log(err)
+        alert('未知错误!')
         wxRedirect()
     }
 }

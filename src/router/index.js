@@ -9,6 +9,7 @@ import StoryPage3 from '../pages/StoryPages/StoryPage3.vue'
 import StoryPage4 from '../pages/StoryPages/StoryPage4.vue'
 import StoryPage5 from '../pages/StoryPages/StoryPage5.vue'
 import StoryPage6 from '../pages/StoryPages/StoryPage6.vue'
+import { isLogin } from "../utils/tokenAndWxlogin"
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -49,11 +50,19 @@ const router = createRouter({
                     path: "6",
                     component: StoryPage6
                 }
-            ]
+            ],
+            beforeEnter: () => {
+                if (isLogin()) return true
+                else return { path: '/' }
+            }
         },
         {
             path: "/wish",
             component: WishPool,
+            beforeEnter: () => {
+                if (isLogin()) return true
+                else return { path: '/' }
+            }
         },
         {
             path: "/wechat",
