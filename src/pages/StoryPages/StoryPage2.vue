@@ -19,7 +19,7 @@
 <script setup>
 import StarAni from '../../assets/lotties/star.json'
 import TeachAni from '../../assets/lotties/teacher.json'
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, onBeforeMount } from 'vue'
 import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
 import { nextPage } from '../../utils/move.js'
@@ -27,6 +27,16 @@ import { animate } from '../../utils/paraAnimate.js'
 import DanceNumber from '../../components/DanceNumber.vue'
 import SlideButton from '../../components/SideButton.vue'
 import { leaveAni } from '../../utils/leave.js'
+import { countcourse } from '../../service/axios'
+
+
+
+// data
+const num = ref(0)
+onBeforeMount(async () => {
+    num.value = await countcourse()
+})
+
 
 //router
 const router = useRouter()

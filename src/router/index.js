@@ -59,6 +59,7 @@ const router = createRouter({
         {
             path: "/wish",
             component: WishPool,
+            meta: { title: "许个愿吧" },
             beforeEnter: () => {
                 if (isLogin()) return true
                 else return { path: '/' }

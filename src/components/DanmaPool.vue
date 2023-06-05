@@ -14,8 +14,13 @@
     
 <script setup>
 import Danmaku from 'danmaku'
-import { onMounted, createApp, ref } from 'vue'
+import { onMounted, createApp, ref, inject } from 'vue'
 import DanmaItem from './DanmaItem.vue'
+import { commentMy } from '../utils/danmaUtils.js'
+import { submitwish } from '../service/axios'
+
+//abou me
+const userinfo = inject('userinfo')
 
 //danmaku
 let danmaku = null
@@ -40,8 +45,10 @@ const comment = (text, my, tx) => {
 const sendContent = ref('')
 const send = async () => {
     if (!sendContent.value) return
-    danmaku.emit(comment(sendContent.value, true, 'http://q1.qlogo.cn/g?b=qq&nk=384637134&s=160'))
-    sendContent.value = ''
+    if (await submitwish(sendContent.value)) {
+        danmaku.emit(commentMy(sendContent.value, userinfo))
+        sendContent.value = ''
+    }
 }
 
 onMounted(() => {
@@ -50,7 +57,7 @@ onMounted(() => {
         speed: 50
     })
     setInterval(() => {
-        danmaku.emit(comment('666', false, 'http://q1.qlogo.cn/g?b=qq&nk=384637134&s=160'))
+        danmaku.emit(comment('毕业快乐！', false, 'http://q1.qlogo.cn/g?b=qq&nk=384637134&s=160'))
     }, 300)
 })
 </script>
@@ -131,5 +138,11 @@ onMounted(() => {
     border: none;
     padding: 8px;
     position: relative;
+}
+
+#test{
+    position: absolute;
+    top: 50%;
+    left: 20%;
 }
 </style>

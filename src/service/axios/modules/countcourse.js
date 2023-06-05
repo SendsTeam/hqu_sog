@@ -2,8 +2,8 @@ import axios from "../axios.js"
 import { setToken, getToken } from "../../../utils/tokenAndWxlogin.js"
 export default async () => {
     try {
-        const result = await axios.get('/user/login', {
-            Headers: {
+        const result = await axios.get('/user/course/countcourse', {
+            headers: {
                 token: getToken()
             }
         })

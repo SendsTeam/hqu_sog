@@ -24,7 +24,7 @@ onMounted(() => {
     } else {
         userinfo.va1ue = getinfo()
         console.log(userinfo)
-        router.push('/story')
+        router.push('/wish')
     }
 })
 

@@ -3,6 +3,10 @@
         <div class="danmaItem" @click="" ref="instance">
             <img :src='props.tx' alt="tx" />
             <span>{{ props.text }}</span>
+            <div class="info">
+                <span class="nickname">来日方长.</span>
+                <span class="stunum">2125102052</span>
+            </div>
             <!-- <span class="like"></span> -->
         </div>
     </div>
@@ -37,9 +41,30 @@ onMounted(() => {
 </script>
     
 <style scoped>
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+    color: gray;
+}
+
+.nickname {
+    line-height: 1rem;
+    font-size: .2rem;
+}
+
+.stunum {
+    font-size: .2rem;
+    line-height: 1rem;
+}
+
 .container {
+    line-height: 2rem;
     padding: .2rem;
 }
+
 
 
 .danmaItem {
@@ -68,7 +93,7 @@ onMounted(() => {
     display: inline-block;
     height: 2rem;
     width: 2rem;
-    margin-right: .2rem;
+    margin-right: 1rem;
     border-radius: 2rem;
 }
 </style>

@@ -3,7 +3,7 @@ import { setToken, getToken } from "../../../utils/tokenAndWxlogin.js"
 export default async () => {
     try {
         const result = await axios.get('/user/login', {
-            Headers: {
+            headers: {
                 token: getToken()
             }
         })

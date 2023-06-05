@@ -4,7 +4,7 @@
             毕业季许愿池
         </div>
         <div class="nav">
-            <button class="nav_button__shadow story" type="button">
+            <button v-if="isGraduate" class="nav_button__shadow story" type="button" @click="router.push('/story')">
                 我的故事
             </button>
             <!-- <button class="nav_button__shadow my-danma" type="button">
@@ -23,18 +23,20 @@
 <script setup>
 import DanmaPool from '../components/DanmaPool.vue'
 import Card from '../components/Card.vue'
-import { inject, onBeforeMount } from 'vue'
+import { inject, onBeforeMount, ref } from 'vue'
 import { getinfo, checkgraduate } from '../service/axios'
+import { useRouter } from 'vue-router'
 
 const loadingSuccess = inject('loadingSuccess')
-
+const router = useRouter
 //userinfo checkgraduate
 const userinfo = inject('userinfo')
+const isGraduate = ref(false)
 onBeforeMount(async () => {
-    if (!userinfo) {
+    if (!userinfo.value) {
         userinfo.value = await getinfo()
     }
-    console.log(await checkgraduate())
+    isGraduate.value = await checkgraduate()
 })
 
 
@@ -57,7 +59,7 @@ onBeforeMount(async () => {
     right: 0;
     overflow: hidden;
 
-    animation: 1s slideInUp ease;
+    animation: 1s fadeInUp ease;
 }
 
 .title {
@@ -124,20 +126,20 @@ onBeforeMount(async () => {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.195);
+    background-color: rgba(255, 255, 255, 0.243);
     /* 设置透明度 */
     z-index: 99;
     /* 设置遮罩层的层级 */
     pointer-events: none;
     /* 防止遮挡下方元素的交互 */
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
 
-    animation: 4s maskHide ease forwards;
+    animation: 3s maskHide ease forwards;
+    animation-delay: 1s;
 }
 
 @keyframes maskHide {
     to {
-        backdrop-filter: blur(0);
         opacity: 0;
         z-index: -1;
     }
