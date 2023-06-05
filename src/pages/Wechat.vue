@@ -1,24 +1,46 @@
-<template></template>
+<template>
+    <div class="wechat-container">
+        <img src="../assets/img/qrcode.png" alt="Wish" />
+        请在微信中许愿～
+    </div>
+</template>
     
 <script setup>
-
-import { onMounted } from 'vue'
-import qs from 'qs'
-
-onMounted(() => {
-    const AppId = 'wxfe035b066fb1158b' // 测试公众号平台的APPID，第1步那个链接里
-    const { code = '' } = qs.parse(window.location.search) // 获取当前页面地址中的code参数的值
-    const local = encodeURIComponent(window.location.href)  // 对当前地址用encodeURIComponent进行编码
-
-    // 如果code是''，说明还没有授权，访问下面连接，用户同意授权，获取code
-    if (code === '') {
-        // window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${AppId}&redirect_uri=${local}&response_type=code&Scope=snsapi_base&state=1#wechat_redirect`
-    } else {
-        alert(code)
-        console.log('获取微信code：', code);
-    }
-})
-
 </script>
     
-<style></style>
+<style scoped>
+.danmaku-wrapper {
+    position: fixed;
+    top: 6rem;
+    left: 0;
+    right: 0;
+    bottom: 6rem;
+    height: auto;
+}
+
+.wechat-container {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: rgb(192, 255, 219);
+    flex-direction: column;
+    font-size: 2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, .4);
+}
+
+.wechat-container img {
+    border-radius: 60px;
+    box-shadow: 0 2px 12px 2px #58135852;
+    width: 70vw;
+    max-width: 38rem;
+    height: auto;
+}
+</style>

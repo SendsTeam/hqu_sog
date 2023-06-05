@@ -6,6 +6,7 @@ import 'animate.css/animate.min.css'
 import './assets/css/common.css'
 import router from './router'
 
+
 const app = createApp(App)
 
 
