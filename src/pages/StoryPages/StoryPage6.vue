@@ -36,7 +36,7 @@ import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
 import { animate } from '../../utils/paraAnimate.js'
 import { leaveAni } from '../../utils/leave.js'
-import { eightten } from '../../service/axios'
+import { eightten, storyinit } from '../../service/axios'
 import DanceNumber from '../../components/DanceNumber.vue'
 
 //data
@@ -58,6 +58,7 @@ const router = useRouter()
 
 //next
 const next = async () => {
+    await storyinit()
     leaveAni('sunandmoon-container')
     leaveAni('star-container')
     leaveAni('sub-title')

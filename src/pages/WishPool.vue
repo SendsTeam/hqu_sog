@@ -27,7 +27,7 @@
 import DanmaPool from '../components/DanmaPool.vue'
 import Card from '../components/Card.vue'
 import { inject, onBeforeMount, ref } from 'vue'
-import { getinfo, checkgraduate } from '../service/axios'
+import { getinfo, checkgraduate, checkstory } from '../service/axios'
 import { useRouter } from 'vue-router'
 
 const loadingSuccess = inject('loadingSuccess')
@@ -39,7 +39,9 @@ onBeforeMount(async () => {
     if (!userinfo.value) {
         userinfo.value = await getinfo()
     }
-    console.log(userinfo.value)
+    const isStoryInit = await checkstory()
+    // alert(JSON.stringify(isStoryInit))
+    if (!isStoryInit) { router.push('/story') }
     isGraduate.value = await checkgraduate()
 })
 

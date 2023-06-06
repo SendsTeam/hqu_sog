@@ -3,6 +3,8 @@ import getinfo from "./modules/getinfo.js"
 import checkgraduate from "./modules/checkgraduate.js"
 import randmessage from "./modules/randmessage.js"
 import submitwish from "./modules/submitwish.js"
+import storyinit from "./modules/storyinit.js"
+import checkstory from "./modules/checkstory.js"
 
 //course
 import countcourse from "./modules/course/countcourse.js"
@@ -21,5 +23,7 @@ export {
     firstcourse,
     eightten,
     mostclassroom,
-    mostteacher
+    mostteacher,
+    storyinit,
+    checkstory
 }
