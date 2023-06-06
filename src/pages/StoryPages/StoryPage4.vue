@@ -4,7 +4,10 @@
         <div class="classRoom-container" />
         <div class="sub-title">想再看看吗？</div>
         <div class="paragraph1">
-            <p class="shouldAni" delayTime="2000">上过xx门课的xxxx，</p>
+            <p class="shouldAni" delayTime="2000">上过
+                <DanceNumber :num="num" :dur="3000" :del="3000" className="danceNum1" /> 门课的 <span>{{ data.classroom
+                }}</span>，
+            </p>
             <p class="shouldAni" delayTime="3500">不是困住你的教室‘牢笼’，</p>
             <p class="shouldAni" delayTime="5000">而是伴你最多次数的扬帆之地。</p>
         </div>
@@ -17,13 +20,23 @@
 <script setup>
 import StarAni from '../../assets/lotties/star.json'
 import ClassRoomAni from '../../assets/lotties/classroom.json'
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, onBeforeMount, ref } from 'vue'
 import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
 import { nextPage } from '../../utils/move.js'
 import { animate } from '../../utils/paraAnimate.js'
 import SlideButton from '../../components/SideButton.vue'
 import { leaveAni } from '../../utils/leave.js'
+import { mostclassroom } from '../../service/axios'
+import DanceNumber from '../../components/DanceNumber.vue'
+
+//data
+const data = ref({})
+const num = ref(99)
+onBeforeMount(async () => {
+    data.value = await mostclassroom()
+    num.value = data.value.total
+})
 
 //router
 const router = useRouter()
@@ -142,8 +155,8 @@ onUnmounted(() => {
 
 .page4 .sub-title {
     font-size: 2rem;
-    color: rgb(79, 245, 162);
-    text-shadow: 3px 3px 2px #76b3ec;
+    color: rgb(229, 78, 19);
+    text-shadow: 3px 3px 2px #f4d4aa;
 
 
     width: 100%;
@@ -160,6 +173,11 @@ onUnmounted(() => {
     font-size: 1.5rem;
     margin-top: 1rem;
     line-height: 3rem;
+}
+
+.page4 .paragraph1 span {
+    color: #3a70f8;
+    font-size: 2rem;
 }
 
 .page4 .paragraph1-leave {

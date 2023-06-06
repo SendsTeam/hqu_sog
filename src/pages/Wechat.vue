@@ -1,6 +1,6 @@
 <template>
     <div class="wechat-container">
-        <img src="../assets/img/qrcode.png" alt="Wish" />
+        <img src="../assets/img/qrcode.png" alt="Wish" id="wechat" />
         请在微信中许愿～
     </div>
 </template>
@@ -37,10 +37,10 @@
 }
 
 .wechat-container img {
-    border-radius: 60px;
+    border-radius: 30px;
     box-shadow: 0 2px 12px 2px #58135852;
-    width: 70vw;
-    max-width: 38rem;
+    width: 50vw;
+    max-width: 50vh;
     height: auto;
 }
 </style>

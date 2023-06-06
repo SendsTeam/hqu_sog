@@ -1,14 +1,14 @@
-import axios from "../axios.js"
-import { setToken, getToken, wxRedirect } from "../../../utils/tokenAndWxlogin.js"
+import axios from "../../axios.js"
+import { setToken, getToken, wxRedirect } from "../../../../utils/tokenAndWxlogin.js"
 export default async () => {
     try {
-        const result = await axios.get('/user/wall/randmessage', {
+        const result = await axios.get('/user/course/mostteacher', {
             headers: {
                 token: getToken()
             }
         })
         if (result.status !== 200) {
-            return []
+            return null
         } else {
             if (result.data.code === 200) {
                 return result.data.data
@@ -17,13 +17,13 @@ export default async () => {
                 setToken('')
                 wxRedirect()
             } else {
-                return []
+                return null
             }
         }
     } catch (err) {
-        // alert('获取弹幕未知错误！')
+        // alert('获取课程数据未知错误！')
         // setToken('')
         // wxRedirect()
-        return []
+        return null
     }
 }

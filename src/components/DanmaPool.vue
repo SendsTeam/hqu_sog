@@ -14,32 +14,17 @@
     
 <script setup>
 import Danmaku from 'danmaku'
-import { onMounted, createApp, ref, inject } from 'vue'
-import DanmaItem from './DanmaItem.vue'
+import { onMounted, ref, inject } from 'vue'
 import { commentMy } from '../utils/danmaUtils.js'
-import { submitwish } from '../service/axios'
+import { randmessage, submitwish } from '../service/axios'
+import { commentOther } from '../utils/danmaUtils.js'
 
 //abou me
 const userinfo = inject('userinfo')
 
 //danmaku
 let danmaku = null
-const stop = () => {
-    danmaku.speed = 1
-}
-const play = () => [
-    danmaku.speed = 50
-]
-const comment = (text, my, tx) => {
-    return {
-        render: function () {
-            let $div = document.createElement('div')
-            const danmaItem = createApp(DanmaItem, { text, my: my ? my : false, tx })
-            const instance = danmaItem.mount($div)
-            return $div
-        },
-    }
-}
+
 
 // send
 const sendContent = ref('')
@@ -56,8 +41,27 @@ onMounted(() => {
         container: document.getElementById('danmaPool'),
         speed: 50
     })
+
+    // danmu logic
+    const danmaPool = []
+    setInterval(async () => {
+        while (danmaPool.length < 50) {
+            const result = await randmessage()
+            if (result) {
+                danmaPool.push.apply(danmaPool, result)
+            }
+        }
+    }, 2000)
+
     setInterval(() => {
-        danmaku.emit(comment('毕业快乐！', false, 'http://q1.qlogo.cn/g?b=qq&nk=384637134&s=160'))
+        if (danmaPool.length) {
+            const danma = danmaPool.shift()
+            if (danma.stu_num === userinfo.value.stu_num) {
+                danmaku.emit(commentMy(danma.text, userinfo))
+            } else {
+                danmaku.emit(commentOther(danma))
+            }
+        }
     }, 300)
 })
 </script>
@@ -138,11 +142,5 @@ onMounted(() => {
     border: none;
     padding: 8px;
     position: relative;
-}
-
-#test{
-    position: absolute;
-    top: 50%;
-    left: 20%;
 }
 </style>

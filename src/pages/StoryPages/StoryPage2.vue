@@ -6,7 +6,7 @@
         <div class="paragraph1">
             <p class="shouldAni" delayTime="2000">在大学四载间，</p>
             <p class="shouldAni" delayTime="3500">你参与了
-                <DanceNumber :num="700" :dur="3000" :del="3000" className="danceNum1" />场盛装课堂之旅，
+                <DanceNumber :num="num" :dur="3000" :del="3000" className="danceNum1" />场盛装课堂之旅，
             </p>
             <p class="shouldAni" delayTime="5000">饱览了知识的辽阔河山。</p>
         </div>
@@ -19,7 +19,7 @@
 <script setup>
 import StarAni from '../../assets/lotties/star.json'
 import TeachAni from '../../assets/lotties/teacher.json'
-import { onMounted, onUnmounted, onBeforeMount } from 'vue'
+import { onMounted, onUnmounted, onBeforeMount, ref } from 'vue'
 import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
 import { nextPage } from '../../utils/move.js'
@@ -32,7 +32,7 @@ import { countcourse } from '../../service/axios'
 
 
 // data
-const num = ref(0)
+const num = ref(99)
 onBeforeMount(async () => {
     num.value = await countcourse()
 })
@@ -159,6 +159,11 @@ onUnmounted(() => {
     font-size: 1.5rem;
     margin-top: 1rem;
     line-height: 3rem;
+    color: snow;
+    /* background-color: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px; */
 }
 
 .page2 .paragraph1-leave {

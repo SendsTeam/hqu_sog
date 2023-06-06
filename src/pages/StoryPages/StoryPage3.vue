@@ -4,8 +4,9 @@
         <div class="book-container" />
         <div class="sub-title">想回到过去吗？</div>
         <div class="paragraph1">
-            <p class="shouldAni" delayTime="2000">在你进入大学的第 n 周，</p>
-            <p class="shouldAni" delayTime="3500">xxx老师的xxxxxx课上，</p>
+            <p class="shouldAni" delayTime="2000">你在进入大学的第 <span>{{ data.start_week }}</span> 周，</p>
+            <p class="shouldAni" delayTime="3500"><span>{{ data.teacher }}</span> 老师的 <span>{{ data.coursename }}</span> 课上，
+            </p>
             <p class="shouldAni" delayTime="5000">翻开了在HQU的‘序章’！</p>
         </div>
         <!-- <button class="nextButton" @click="next" :disabled="!clickAble">继续 >></button> -->
@@ -17,13 +18,20 @@
 <script setup>
 import StarAni from '../../assets/lotties/star.json'
 import BookAni from '../../assets/lotties/book.json'
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, onBeforeMount, ref } from 'vue'
 import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
 import { nextPage } from '../../utils/move.js'
 import { animate } from '../../utils/paraAnimate.js'
 import SlideButton from '../../components/SideButton.vue'
 import { leaveAni } from '../../utils/leave.js'
+import { firstcourse } from '../../service/axios'
+
+//data
+const data = ref({})
+onBeforeMount(async () => {
+    data.value = await firstcourse()
+})
 
 //router
 const router = useRouter()
@@ -128,8 +136,8 @@ onUnmounted(() => {
 
 .page3 .sub-title {
     font-size: 2rem;
-    color: rgb(79, 245, 162);
-    text-shadow: 3px 3px 2px #76b3ec;
+    color: rgb(212, 245, 79);
+    text-shadow: 3px 3px 2px #ec76e6;
 
 
     width: 100%;
@@ -146,6 +154,12 @@ onUnmounted(() => {
     font-size: 1.5rem;
     margin-top: 1rem;
     line-height: 3rem;
+    color: snow;
+}
+
+.page3 .paragraph1 span {
+    color: #ef358c;
+    font-size: 2rem;
 }
 
 .page3 .paragraph1-leave {

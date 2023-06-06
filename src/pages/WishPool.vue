@@ -4,9 +4,12 @@
             毕业季许愿池
         </div>
         <div class="nav">
-            <button v-if="isGraduate" class="nav_button__shadow story" type="button" @click="router.push('/story')">
-                我的故事
-            </button>
+            <transition enter-active-class="animate__animated animate__fadeIn">
+                <button v-if="isGraduate" class="nav_button__shadow story" type="button" @click="storyButton">
+                    我的故事
+                </button>
+            </transition>
+
             <!-- <button class="nav_button__shadow my-danma" type="button">
                 我的弹幕
             </button> -->
@@ -28,7 +31,7 @@ import { getinfo, checkgraduate } from '../service/axios'
 import { useRouter } from 'vue-router'
 
 const loadingSuccess = inject('loadingSuccess')
-const router = useRouter
+const router = useRouter()
 //userinfo checkgraduate
 const userinfo = inject('userinfo')
 const isGraduate = ref(false)
@@ -36,12 +39,15 @@ onBeforeMount(async () => {
     if (!userinfo.value) {
         userinfo.value = await getinfo()
     }
+    console.log(userinfo.value)
     isGraduate.value = await checkgraduate()
 })
 
 
-
-
+// story-button
+const storyButton = () => {
+    router.push('/story')
+}
 
 
 </script>
@@ -133,13 +139,19 @@ onBeforeMount(async () => {
     pointer-events: none;
     /* 防止遮挡下方元素的交互 */
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
     animation: 3s maskHide ease forwards;
     animation-delay: 1s;
 }
 
 @keyframes maskHide {
-    to {
+    99% {
+        opacity: 0.01;
+        z-index: 99;
+    }
+
+    100% {
         opacity: 0;
         z-index: -1;
     }

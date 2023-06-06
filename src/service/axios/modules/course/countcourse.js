@@ -1,5 +1,5 @@
-import axios from "../axios.js"
-import { setToken, getToken } from "../../../utils/tokenAndWxlogin.js"
+import axios from "../../axios.js"
+import { setToken, getToken, wxRedirect } from "../../../../utils/tokenAndWxlogin.js"
 export default async () => {
     try {
         const result = await axios.get('/user/course/countcourse', {
@@ -8,21 +8,22 @@ export default async () => {
             }
         })
         if (result.status !== 200) {
-            alert('请求错误！')
-            setToken('')
-            wxRedirect()
+            return null
         } else {
             if (result.data.code === 200) {
                 return result.data.data
-            } else {
-                alert('未知错误！')
+            } else if (result.data.code === 401) {
+                alert('未登录或登录失效！')
                 setToken('')
                 wxRedirect()
+            } else {
+                return null
             }
         }
     } catch (err) {
-        alert('未知错误！')
-        setToken('')
-        wxRedirect()
+        // alert('获取课程数据未知错误！')
+        // setToken('')
+        // wxRedirect()
+        return null
     }
 }

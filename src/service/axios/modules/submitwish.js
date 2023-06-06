@@ -1,5 +1,5 @@
 import axios from "../axios.js"
-import { setToken, getToken } from "../../../utils/tokenAndWxlogin.js"
+import { setToken, getToken, wxRedirect } from "../../../utils/tokenAndWxlogin.js"
 export default async (text) => {
     try {
         const result = await axios.post('/user/wall/submitwish', { text }, {
@@ -7,22 +7,21 @@ export default async (text) => {
                 token: getToken()
             }
         })
-        console.log(result)
         if (result.status !== 200) {
-            alert('请求错误！')
-            setToken('')
-            wxRedirect()
+            return false
         } else {
             if (result.data.code === 200) {
                 return true
-            } else {
-                alert('未知错误！')
+            } else if (result.data.code === 401) {
+                alert('未登录或登录失效！')
                 setToken('')
                 wxRedirect()
+            } else {
+                return false
             }
         }
     } catch (err) {
-        alert('未知错误！')
+        alert('许愿发生未知错误！')
         setToken('')
         wxRedirect()
     }

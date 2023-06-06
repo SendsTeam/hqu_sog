@@ -8,7 +8,6 @@
   <meta name="viewport" id="viewport"
     content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   <meta name="screen-orientation" content="portrait">
-  <title>请查收你的毕业报告...</title>
 </head>
 
 <style>
@@ -70,6 +69,38 @@
     opacity: 0;
     z-index: -1;
   }
+
+  #mask {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    background-color: rgba(255, 255, 255, 0.38);
+    /* 设置遮罩层的层级 */
+    pointer-events: none;
+    /* 防止遮挡下方元素的交互 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 2rem;
+    color: rgb(21, 12, 108)
+  }
+
+  #mask.show {
+    z-index: 99;
+    opacity: 1;
+    animation: .6s fadeIn ease;
+  }
+
+  #mask.hide {
+    z-index: -1;
+    opacity: 0;
+    animation: .6s fadeOut ease;
+  }
 </style>
 
 <body>
@@ -81,7 +112,23 @@
   </div>
   <div id="app"></div>
   <div id="loading"></div>
+  <div id="mask" class="hide">开启竖屏以获得良好体验~</div>
   <script type="module" src="/src/main.js"></script>
+  <script type="module">
+    const resize = () => {
+      const { clientHeight, clientWidth } = document.documentElement
+      const mask = document.querySelector('#mask')
+      if (clientWidth > clientHeight && !document.querySelector('#wechat')) {
+        mask.classList.replace('hide', 'show')
+      } else {
+        if (mask.classList.contains('show')) {
+          mask.classList.replace('show', 'hide')
+        }
+      }
+    }
+    window.onresize = resize
+    resize()
+  </script>
 </body>
 
 </html>

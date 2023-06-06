@@ -51,11 +51,9 @@ onMounted(async () => {
         animationData: JumpAni,
     }))
     setTimeout(() => {
-        containerJump.setAttribute("style", "opacity: 1;")
-        document.querySelector('.start').setAttribute("style", "opacity: 1;")
         document.querySelector('.title').classList.add('ani-bounce')
         lottieInstances[0].play()
-    }, 3000)
+    }, 2000)
 
     //paper plane
     const containerPaper = document.querySelector('.paper-container')
@@ -133,7 +131,7 @@ onUnmounted(() => {
     bottom: 0;
     right: 0;
 
-    animation: zoomIn;
+    animation: fadeIn forwards;
     animation-duration: 2s;
     animation-delay: 2.5s;
 }
@@ -154,9 +152,19 @@ onUnmounted(() => {
     left: 1rem;
     right: 1rem;
     opacity: 0;
-    animation: bounceInUp;
+    animation: cusAni forwards;
     animation-duration: 2s;
     animation-delay: 2.5s;
+}
+
+@keyframes cusAni {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .page1 .start-button {

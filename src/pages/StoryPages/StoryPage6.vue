@@ -9,13 +9,17 @@
         </div>
         <div class="paragraph1">
             <p class="shouldAni" delayTime="2000">陪你最早的，不止是晨间的氤氲，</p>
-            <p class="shouldAni" delayTime="3500">还有 xxx 次的早八；</p>
+            <p class="shouldAni" delayTime="3500">还有
+                <DanceNumber :num="num1" :dur="3000" :del="4000" className="danceNum1" /> 次的早八；
+            </p>
             <p class="shouldAni" delayTime="5000">陪你最晚的，不止是夜间的繁星，</p>
-            <p class="shouldAni" delayTime="6500">还有 xxx 次的晚十。</p>
+            <p class="shouldAni" delayTime="6500">还有
+                <DanceNumber :num="num2" :dur="3000" :del="7000" className="danceNum1" /> 次的晚十。
+            </p>
         </div>
         <!-- <button class="nextButton" @click="next" :disabled="!clickAble">继续 >></button> -->
         <div class="goWish">
-            <button class="btn boom" @click="next">前往许愿池</button>
+            <button class="btn boom" @click="next" :disabled="!buttonClickAble">前往许愿池</button>
         </div>
         <div class="celebration">
             毕业快乐！
@@ -27,11 +31,26 @@
 import StarAni from '../../assets/lotties/star.json'
 import SunAndMoonAni from '../../assets/lotties/sunandmoon.json'
 import CeritificateAni from '../../assets/lotties/certificate.json'
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref, onBeforeMount } from 'vue'
 import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
 import { animate } from '../../utils/paraAnimate.js'
 import { leaveAni } from '../../utils/leave.js'
+import { eightten } from '../../service/axios'
+import DanceNumber from '../../components/DanceNumber.vue'
+
+//data
+const data = ref({})
+const num1 = ref(99)
+const num2 = ref(99)
+onBeforeMount(async () => {
+    data.value = await eightten()
+    // alert(JSON.stringify(data.value))
+    if (data.value !== {}) {
+        num1.value = data.value.eight_num
+        num2.value = data.value.ten_num
+    }
+})
 
 //router
 const router = useRouter()
@@ -60,7 +79,11 @@ const next = async () => {
 
 
 let lottieInstances = []
+let buttonClickAble = ref(false)
 onMounted(async () => {
+    // button
+    setTimeout(() => { buttonClickAble.value = true }, 7000)
+
     // star lottie
     const containerStar = document.querySelector('.star-container')
     lottieInstances.push(lottie.loadAnimation({
@@ -160,8 +183,8 @@ onUnmounted(() => {
 
 .page6 .sub-title {
     font-size: 2rem;
-    color: rgb(79, 245, 162);
-    text-shadow: 3px 3px 2px #76b3ec;
+    color: rgb(227, 30, 245);
+    text-shadow: 3px 3px 2px #4a6c8c;
 
 
     width: 100%;
@@ -264,10 +287,11 @@ onUnmounted(() => {
     opacity: 0;
     position: absolute;
     top: 4rem;
+    z-index: 999;
 
-    font-size: 5rem;
-    color: rgb(62, 230, 160);
-    text-shadow: 3px 3px 2px #76b3ec;
+    font-size: 4rem;
+    color: rgb(15, 242, 147);
+    text-shadow: 3px 3px 2px #476f95;
 
 
     width: 100%;

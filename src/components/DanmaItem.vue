@@ -1,11 +1,11 @@
 <template>
-    <div class="container">
-        <div class="danmaItem" @click="" ref="instance">
+    <div class="container" @click="console.log(6)">
+        <div class="danmaItem" ref="instance">
             <img :src='props.tx' alt="tx" />
             <span>{{ props.text }}</span>
             <div class="info">
-                <span class="nickname">来日方长.</span>
-                <span class="stunum">2125102052</span>
+                <span class="nickname">by {{ props.nickname }}</span>
+                <span class="stunum">{{ props.stunum }}</span>
             </div>
             <!-- <span class="like"></span> -->
         </div>
@@ -27,6 +27,14 @@ const props = defineProps({
     tx: {
         type: String,
         required: true
+    },
+    nickname: {
+        type: String,
+        required: true
+    },
+    stunum: {
+        type: String,
+        required: true
     }
 })
 
@@ -36,6 +44,8 @@ onMounted(() => {
         instance.value.classList.add('my')
     }
 })
+
+
 
 
 </script>
@@ -52,11 +62,11 @@ onMounted(() => {
 
 .nickname {
     line-height: 1rem;
-    font-size: .2rem;
+    font-size: .5rem;
 }
 
 .stunum {
-    font-size: .2rem;
+    font-size: .5rem;
     line-height: 1rem;
 }
 

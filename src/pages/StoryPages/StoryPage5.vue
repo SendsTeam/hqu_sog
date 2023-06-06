@@ -4,9 +4,11 @@
         <div class="manTeacher-container" />
         <div class="sub-title">想再听听吗？</div>
         <div class="paragraph1">
-            <p class="shouldAni" delayTime="2000">xxx 老师，</p>
-            <p class="shouldAni" delayTime="3500">教给你的可能不只是xxxx，xxxx</p>
-            <p class="shouldAni" delayTime="5000">这x门课的知识，</p>
+            <p class="shouldAni" delayTime="2000"><span class="s1">{{ data.teacher }} </span>老师，</p>
+            <p class="shouldAni" delayTime="3500">教给你的可能不只是
+                <span class="s2">{{ data.courses[showIndex] }} </span>
+            </p>
+            <p class="shouldAni" delayTime="5000">这<span class="s3">{{ data.total }}</span>门课的知识，</p>
             <p class="shouldAni" delayTime="6500">可能还有ta的人生哲理。</p>
         </div>
         <!-- <button class="nextButton" @click="next" :disabled="!clickAble">继续 >></button> -->
@@ -18,13 +20,30 @@
 <script setup>
 import StarAni from '../../assets/lotties/star.json'
 import ManTeacherAni from '../../assets/lotties/manteacher.json'
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref, onBeforeMount } from 'vue'
 import lottie from 'lottie-web'
 import { useRouter } from "vue-router"
 import { nextPage } from '../../utils/move.js'
 import { animate } from '../../utils/paraAnimate.js'
 import SlideButton from '../../components/SideButton.vue'
 import { leaveAni } from '../../utils/leave.js'
+import { mostteacher } from '../../service/axios'
+
+//data
+const data = ref({})
+const showIndex = ref(0)
+onBeforeMount(async () => {
+    data.value = await mostteacher()
+    if (data.value.courses) {
+        setInterval(() => {
+            if (showIndex.value < data.value.courses.length - 1) {
+                showIndex.value++
+            } else {
+                showIndex.value = 0
+            }
+        }, 1000)
+    }
+})
 
 //router
 const router = useRouter()
@@ -142,8 +161,8 @@ onUnmounted(() => {
 
 .page5 .sub-title {
     font-size: 2rem;
-    color: rgb(79, 245, 162);
-    text-shadow: 3px 3px 2px #76b3ec;
+    color: rgb(20, 205, 234);
+    text-shadow: 3px 3px 2px #36893e;
 
 
     width: 100%;
@@ -160,6 +179,24 @@ onUnmounted(() => {
     font-size: 1.5rem;
     margin-top: 1rem;
     line-height: 3rem;
+}
+
+.page5 .paragraph1 span {
+    font-size: 2rem;
+}
+
+.s1 {
+    color: #53edba;
+}
+
+.s2 {
+    color: rgb(185, 20, 185);
+    display: inline-block;
+    animation: 1s pulse ease infinite;
+}
+
+.s3 {
+    color: rgb(185, 235, 58);
 }
 
 .page5 .paragraph1-leave {

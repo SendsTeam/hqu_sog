@@ -16,13 +16,11 @@ onMounted(() => {
         const wechatCode = getWechatCode()
         if (wechatCode) {
             login(wechatCode)
-            userinfo.value = getinfo()
             router.push('/wish')
         } else {
             wxRedirect()
         }
     } else {
-        userinfo.va1ue = getinfo()
         console.log(userinfo)
         router.push('/wish')
     }

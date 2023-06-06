@@ -10,6 +10,7 @@ import StoryPage4 from '../pages/StoryPages/StoryPage4.vue'
 import StoryPage5 from '../pages/StoryPages/StoryPage5.vue'
 import StoryPage6 from '../pages/StoryPages/StoryPage6.vue'
 import { isLogin } from "../utils/tokenAndWxlogin"
+import { checkgraduate } from "../service/axios"
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -21,6 +22,9 @@ const router = createRouter({
         {
             path: "/story",
             component: Story,
+            meta: {
+                title: "请查收你的毕业报告..."
+            },
             children: [
                 {
                     path: "/story",
@@ -52,14 +56,14 @@ const router = createRouter({
                 }
             ],
             beforeEnter: () => {
-                if (isLogin()) return true
+                if (isLogin() && checkgraduate()) return true
                 else return { path: '/' }
             }
         },
         {
             path: "/wish",
             component: WishPool,
-            meta: { title: "许个愿吧" },
+            meta: { title: "许个愿吧QAQ" },
             beforeEnter: () => {
                 if (isLogin()) return true
                 else return { path: '/' }
@@ -68,36 +72,19 @@ const router = createRouter({
         {
             path: "/wechat",
             component: Wechat,
+            meta: {
+                title: "请扫码o"
+            }
         }
-        // {
-        //     path: "/adminlogin",
-        //     name: "adminlogin",
-        //     components: {
-        //         body: () => import('../views/Main/body/AdminLogin.vue')
-        //     },
-        //     beforeEnter: () => {
-        //         const admin = useAdminStore()
-        //         if (admin.isLogin) {
-        //             return { path: '/admin' }
-        //         }
-        //         else return true
-        //     }
-        // },
-        // {
-        //     path: "/admin",
-        //     name: "admin",
-        //     components: {
-        //         body: () => import('../views/Main/body/Admin.vue')
-        //     },
-        //     beforeEnter: () => {
-        //         const admin = useAdminStore()
-        //         if (admin.isLogin) {
-        //             return true
-        //         }
-        //         else return { path: '/adminlogin' }
-        //     }
-        // }
     ],
 })
 
+
+router.beforeEach((to, from, next) => {
+    /* 路由发生变化修改页面title */
+    if (to.meta.title) {
+        document.title = to.meta.title
+    }
+    next()
+})
 export default router
