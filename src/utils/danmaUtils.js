@@ -8,7 +8,7 @@ const comment = (text, my, tx, nickname, stunum) => {
             const danmaItem = createApp(DanmaItem, { text, my: my ? my : false, tx, nickname, stunum })
             danmaItem.mount($div)
             // danmaItem.unmount()
-            setTimeout(() => { danmaItem.unmount() }, 30000)
+            setTimeout(() => { $div = null }, 20000)
             return $div
         },
     }

@@ -39,10 +39,12 @@ onBeforeMount(async () => {
     if (!userinfo.value) {
         userinfo.value = await getinfo()
     }
-    const isStoryInit = await checkstory()
-    // alert(JSON.stringify(isStoryInit))
-    if (!isStoryInit) { router.push('/story') }
     isGraduate.value = await checkgraduate()
+    if (isGraduate.value) {
+        const isStoryInit = await checkstory()
+        // alert(JSON.stringify(isStoryInit))
+        if (!isStoryInit) { router.push('/story') }
+    }
 })
 
 
@@ -134,7 +136,7 @@ const storyButton = () => {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.243);
+    background-color: rgba(255, 255, 255, 0.26);
     /* 设置透明度 */
     z-index: 99;
     /* 设置遮罩层的层级 */
@@ -144,7 +146,7 @@ const storyButton = () => {
     -webkit-backdrop-filter: blur(10px);
 
     animation: 3s maskHide ease forwards;
-    animation-delay: 1s;
+    animation-delay: 2s;
 }
 
 @keyframes maskHide {
