@@ -48,6 +48,9 @@ const updateDanmaku = async () => {
 const sendContent = ref('')
 const send = async () => {
     if (!sendContent.value) return
+    if (!sendContent.value.length > 30) {
+        return alert('字数太长啰！')
+    }
     if (await submitwish(sendContent.value)) {
         danmakuInstance.value.add({
             text: sendContent.value,
