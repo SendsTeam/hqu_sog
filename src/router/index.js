@@ -10,7 +10,10 @@ import StoryPage4 from '../pages/StoryPages/StoryPage4.vue'
 import StoryPage5 from '../pages/StoryPages/StoryPage5.vue'
 import StoryPage6 from '../pages/StoryPages/StoryPage6.vue'
 import { isLogin } from "../utils/tokenAndWxlogin"
+import { isLogin as adminIsLogin } from "../utils/admin"
 import { checkgraduate } from "../service/axios"
+import AdminLogin from "../pages/AdminPages/AdminLogin.vue"
+import AdminManage from "../pages/AdminPages/AdminManage.vue"
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -74,6 +77,28 @@ const router = createRouter({
             component: Wechat,
             meta: {
                 title: "请扫码o"
+            }
+        },
+        {
+            path: "/adminlogin",
+            component: AdminLogin,
+            meta: {
+                title: "请登录"
+            }, 
+            // beforeEnter: () => {
+            //     if (!adminIsLogin()) return true
+            //     else return { path: '/adminmanage' }
+            // }
+        },
+        {
+            path: "/adminmanage",
+            component: AdminManage,
+            meta: {
+                title: "后台管理"
+            },
+            beforeEnter: () => {
+                if (adminIsLogin()) return true
+                else return { path: '/adminlogin' }
             }
         }
     ],

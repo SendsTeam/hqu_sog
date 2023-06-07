@@ -13,6 +13,12 @@ import eightten from "./modules/course/eightten.js"
 import mostclassroom from "./modules/course/mostclassroom.js"
 import mostteacher from "./modules/course/mostteacher.js"
 
+//admin
+import adminLogin from "./modules/admin/login.js"
+import getallmessage from "./modules/admin/getallmessage.js"
+import passmessage from "./modules/admin/passmessage.js"
+import refusemessage from "./modules/admin/refusemessage.js"
+
 export {
     login,
     getinfo,
@@ -25,5 +31,9 @@ export {
     mostclassroom,
     mostteacher,
     storyinit,
-    checkstory
+    checkstory,
+    adminLogin,
+    getallmessage,
+    passmessage,
+    refusemessage
 }

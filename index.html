@@ -127,6 +127,8 @@
     }
     window.onresize = resize
     resize()
+    const timer = setInterval(() => { resize() }, 100)
+    setTimeout(() => { clearInterval(timer) }, 2000)
   </script>
 </body>
 
