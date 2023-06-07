@@ -1,6 +1,14 @@
 <template>
     <div class="container">
-        <div id="danmaPool" />
+        <div id="danmaPool">
+            <vue-danmaku ref="danmakuInstance" id="danmaku" v-model:danmus="danmaku" useSlot :speeds="40"
+                :randomChanne="true">
+                <template v-slot:dm="{ danmu }">
+                    <DanmaItem :text="danmu.text" :my="danmu.stu_num === userinfo.stu_num" :tx="danmu.avatar"
+                        :nickname="danmu.nickname" :stunum="danmu.stu_num" />
+                </template>
+            </vue-danmaku>
+        </div>
         <div class="input__container">
             <input type="text" name="text" class="input__search" placeholder="写下你的寄语吧！" v-model="sendContent"
                 @keydown.enter="send">
@@ -13,56 +21,57 @@
 </template>
     
 <script setup>
-import Danmaku from 'danmaku'
+import vueDanmaku from 'vue3-danmaku'
 import { onMounted, ref, inject } from 'vue'
-import { commentMy } from '../utils/danmaUtils.js'
 import { randmessage, submitwish } from '../service/axios'
-import { commentOther } from '../utils/danmaUtils.js'
+import DanmaItem from './DanmaItem.vue'
+
 
 //abou me
 const userinfo = inject('userinfo')
 
+
 //danmaku
-let danmaku = null
+const danmaku = ref([])
+const danmakuInstance = ref(null)
+const updateDanmaku = async () => {
+    const result = await randmessage()
+    if (result) {
+        result.forEach(element => {
+            danmakuInstance.value.push(element)
+        })
+    }
+}
 
 
-// send
+
 const sendContent = ref('')
 const send = async () => {
     if (!sendContent.value) return
     if (await submitwish(sendContent.value)) {
-        danmaku.emit(commentMy(sendContent.value, userinfo))
+        danmakuInstance.value.add({
+            text: sendContent.value,
+            avatar: userinfo.value.avatar,
+            nickname: userinfo.value.nickname,
+            stu_num: userinfo.value.stu_num
+        })
         sendContent.value = ''
     }
 }
 
-onMounted(() => {
-    danmaku = new Danmaku({
-        container: document.getElementById('danmaPool'),
-        speed: 50
-    })
+onMounted(async () => {
+    //danmu init
 
-    // danmu logic
-    const danmaPool = []
-    setInterval(async () => {
-        while (danmaPool.length < 50) {
-            const result = await randmessage()
-            if (result) {
-                danmaPool.push.apply(danmaPool, result)
-            }
-        }
-    }, 2000)
+    const result = await randmessage()
+    if (result) {
+        result.forEach(element => {
+            danmakuInstance.value.push(element)
+        })
+    }
 
     setInterval(() => {
-        if (danmaPool.length) {
-            const danma = danmaPool.shift()
-            if (danma.stu_num === userinfo.value.stu_num) {
-                danmaku.emit(commentMy(danma.text, userinfo))
-            } else {
-                danmaku.emit(commentOther(danma))
-            }
-        }
-    }, 300)
+        updateDanmaku()
+    }, 1000)
 })
 </script>
     
@@ -142,5 +151,11 @@ onMounted(() => {
     border: none;
     padding: 8px;
     position: relative;
+}
+
+
+#danmaku {
+    width: 100%;
+    height: 100%;
 }
 </style>

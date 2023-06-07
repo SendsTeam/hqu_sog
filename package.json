@@ -12,10 +12,10 @@
   "dependencies": {
     "animate.css": "^4.1.1",
     "axios": "^1.4.0",
-    "danmaku": "^2.0.6",
     "lottie-web": "^5.11.0",
     "vue": "^3.2.47",
-    "vue-router": "^4.2.1"
+    "vue-router": "^4.2.1",
+    "vue3-danmaku": "^1.4.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",

@@ -1,6 +1,6 @@
 <template>
-    <div class="container" @click="console.log(6)">
-        <div class="danmaItem" ref="instance">
+    <div class="container">
+        <div class="danmaItem" ref="instance" @click="ClickTest">
             <img :src='props.tx' alt="tx" />
             <span>{{ props.text }}</span>
             <div class="info">
@@ -39,6 +39,9 @@ const props = defineProps({
 })
 
 const instance = ref(null)
+const ClickTest = () => {
+    // alert('6')
+}
 onMounted(() => {
     if (props.my) {
         instance.value.classList.add('my')

@@ -5,7 +5,7 @@
         <div class="sub-title">想再听听吗？</div>
         <div class="paragraph1">
             <p class="shouldAni" delayTime="2000"><span class="s1">{{ data.teacher }} </span>老师，</p>
-            <p class="shouldAni" delayTime="3500">教给你的可能不只是
+            <p class="shouldAni" delayTime="3500">教给你的可能不只是<br/>
                 <span class="s2">{{ data.courses[showIndex] }} </span>
             </p>
             <p class="shouldAni" delayTime="5000">这<span class="s3">{{ data.total }}</span>门课的知识，</p>
