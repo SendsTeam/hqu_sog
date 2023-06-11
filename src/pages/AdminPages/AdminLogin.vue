@@ -60,7 +60,7 @@ const login = async () => {
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    background: rgba(24, 20, 20, 0.987);
+    background: #522B29;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
@@ -120,17 +120,17 @@ const login = async () => {
 }
 
 .login-box a:active {
-    background: #03f40f;
+    background: #51D6FF;
     color: #fff;
     border-radius: 5px;
-    -webkit-box-shadow: 0 0 5px #03f40f,
-        0 0 25px #03f40f,
-        0 0 50px #03f40f,
-        0 0 100px #03f40f;
-    box-shadow: 0 0 5px #03f40f,
-        0 0 25px #03f40f,
-        0 0 50px #03f40f,
-        0 0 100px #03f40f;
+    -webkit-box-shadow: 0 0 5px #51D6FF,
+        0 0 25px #51D6FF,
+        0 0 50px #51D6FF,
+        0 0 100px #51D6FF;
+    box-shadow: 0 0 5px #51D6FF,
+        0 0 25px #51D6FF,
+        0 0 50px #51D6FF,
+        0 0 100px #51D6FF;
 }
 
 .login-box a span {
@@ -165,8 +165,8 @@ const login = async () => {
     left: -100%;
     width: 100%;
     height: 2px;
-    background: -webkit-gradient(linear, left top, right top, from(transparent), to(#03f40f));
-    background: linear-gradient(90deg, transparent, #03f40f);
+    background: -webkit-gradient(linear, left top, right top, from(transparent), to(#51D6FF));
+    background: linear-gradient(90deg, transparent, #51D6FF);
     -webkit-animation: btn-anim1 2s linear infinite;
     animation: btn-anim1 2s linear infinite;
 }

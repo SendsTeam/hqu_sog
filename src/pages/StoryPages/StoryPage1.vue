@@ -88,8 +88,8 @@ onUnmounted(() => {
 
 .page1 .title {
     font-size: 3rem;
-    color: #37FF8B;
-    text-shadow: 0px 0px 10px #51D6FF;
+    color: #58e492;
+    text-shadow: 0px 0px 10px #522B29;
 
 
     display: inline-block;
@@ -107,7 +107,7 @@ onUnmounted(() => {
 .page1 .sub-title {
     font-size: 2rem;
     color: #51D6FF; 
-    text-shadow: 3px 3px 2px #522B29;
+    text-shadow: 3px 3px 5px #522B29;
 
 
     display: inline-block;
