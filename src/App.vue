@@ -37,7 +37,8 @@ body {
   overflow: hidden;
   position: relative;
   user-select: none;
-  background-color: #808dc5;
+  -webkit-user-select: none;
+  background-color: #8D9EC6;
 }
 
 

@@ -184,8 +184,8 @@ onUnmounted(() => {
 
 .page6 .sub-title {
     font-size: 2rem;
-    color: rgb(227, 30, 245);
-    text-shadow: 3px 3px 2px #4a6c8c;
+    color: #37FF8B;
+    text-shadow: 3px 3px 2px #51D6FF;
 
 
     width: 100%;
@@ -291,8 +291,8 @@ onUnmounted(() => {
     z-index: 999;
 
     font-size: 4rem;
-    color: rgb(15, 242, 147);
-    text-shadow: 3px 3px 2px #476f95;
+    color: #37FF8B;
+    text-shadow: 3px 3px 2px #51D6FF;
 
 
     width: 100%;

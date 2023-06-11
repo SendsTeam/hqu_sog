@@ -141,8 +141,8 @@ onUnmounted(() => {
 
 .page2 .sub-title {
     font-size: 2rem;
-    color: rgb(79, 245, 162);
-    text-shadow: 3px 3px 2px #76b3ec;
+    color: #37FF8B;
+    text-shadow: 3px 3px 2px #51D6FF;
 
 
     width: 100%;
@@ -188,8 +188,8 @@ onUnmounted(() => {
 /* 数字 */
 .danceNum1 {
     font-size: 2.4rem;
-    color: aqua;
-    text-shadow: 0 0 5px #ff66f2;
+    color: #51D6FF;
+    text-shadow: 0 0 5px #A06B9A;
     display: inline-block;
 
     animation: 2s heartBeat infinite;

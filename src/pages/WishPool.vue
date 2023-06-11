@@ -80,8 +80,8 @@ const storyButton = () => {
     text-align: center;
 
     font-size: 1.8rem;
-    color: rgb(99, 239, 239);
-    text-shadow: 1px 1px 5px #b235e4;
+    color: #51D6FF;
+    text-shadow: 1px 1px 5px #522B29;
 
 }
 

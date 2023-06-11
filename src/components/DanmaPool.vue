@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div id="danmaPool">
-            <vue-danmaku ref="danmakuInstance" id="danmaku" v-model:danmus="danmaku" useSlot :speeds="40"
+            <vue-danmaku ref="danmakuInstance" id="danmaku" v-model:danmus="danmaku" useSlot :speeds="20"
                 :randomChanne="true">
                 <template v-slot:dm="{ danmu }">
                     <DanmaItem :text="danmu.text" :my="danmu.stu_num === userinfo.stu_num" :tx="danmu.avatar"
@@ -74,7 +74,7 @@ onMounted(async () => {
 
     setInterval(() => {
         updateDanmaku()
-    }, 1000)
+    }, 2000)
 })
 </script>
     

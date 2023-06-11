@@ -166,8 +166,8 @@ onUnmounted(() => {
 
 .page5 .sub-title {
     font-size: 2rem;
-    color: rgb(20, 205, 234);
-    text-shadow: 3px 3px 2px #36893e;
+    color: #37FF8B;
+    text-shadow: 3px 3px 2px #51D6FF;
 
 
     width: 100%;
@@ -191,17 +191,17 @@ onUnmounted(() => {
 }
 
 .s1 {
-    color: #53edba;
+    color: #37FF8B;
 }
 
 .s2 {
-    color: rgb(185, 20, 185);
+    color: #522B29;
     display: inline-block;
     animation: 1s pulse ease infinite;
 }
 
 .s3 {
-    color: rgb(185, 235, 58);
+    color: #51D6FF;
 }
 
 .page5 .paragraph1-leave {

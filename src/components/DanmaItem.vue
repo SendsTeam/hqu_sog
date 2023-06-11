@@ -94,11 +94,11 @@ onMounted(() => {
     background: rgba(248, 251, 248, 0.856);
     overflow: hidden;
     /* color: rgb(255, 0, 106); */
-    color: black;
+    color: #522B29;
 }
 
 .my {
-    border: 2px solid rgba(232, 46, 68, 0.856) !important;
+    border: 2px solid #A06B9A !important;
 }
 
 

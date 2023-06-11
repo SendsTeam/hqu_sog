@@ -88,8 +88,8 @@ onUnmounted(() => {
 
 .page1 .title {
     font-size: 3rem;
-    color: rgb(115, 250, 182);
-    text-shadow: 0px 0px 10px #e067a4;
+    color: #37FF8B;
+    text-shadow: 0px 0px 10px #51D6FF;
 
 
     display: inline-block;
@@ -106,8 +106,8 @@ onUnmounted(() => {
 
 .page1 .sub-title {
     font-size: 2rem;
-    color: rgb(208, 230, 130);
-    text-shadow: 3px 3px 2px #e376ec;
+    color: #51D6FF; 
+    text-shadow: 3px 3px 2px #522B29;
 
 
     display: inline-block;
@@ -174,7 +174,7 @@ onUnmounted(() => {
     border-radius: 2rem;
     border: 0;
 
-    color: #562596;
+    color: #522B29;
     background-color: #f1c40f;
     text-shadow: -2px 2px 2px rgb(209 132 0),
         -2px 2px 2px rgb(209 132 0),

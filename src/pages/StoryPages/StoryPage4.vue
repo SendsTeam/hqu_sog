@@ -155,8 +155,8 @@ onUnmounted(() => {
 
 .page4 .sub-title {
     font-size: 2rem;
-    color: rgb(115, 251, 77);
-    text-shadow: 3px 3px 2px #979773;
+    color: #37FF8B;
+    text-shadow: 3px 3px 2px #51D6FF;
 
 
     width: 100%;
@@ -176,7 +176,7 @@ onUnmounted(() => {
 }
 
 .page4 .paragraph1 span {
-    color: #adeff7;
+    color: #51D6FF;
     font-size: 2rem;
 }
 
