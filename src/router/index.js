@@ -80,15 +80,19 @@ const router = createRouter({
             }
         },
         {
+            path: "/admin",
+            redirect: "/adminlogin"
+        },
+        {
             path: "/adminlogin",
             component: AdminLogin,
             meta: {
                 title: "请登录"
-            }, 
-            // beforeEnter: () => {
-            //     if (!adminIsLogin()) return true
-            //     else return { path: '/adminmanage' }
-            // }
+            },
+            beforeEnter: () => {
+                if (!adminIsLogin()) return true
+                else return { path: '/adminmanage' }
+            }
         },
         {
             path: "/adminmanage",
