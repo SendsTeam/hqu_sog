@@ -165,7 +165,7 @@ onUnmounted(() => {
     z-index: -1;
     opacity: 0;
 
-    top: 50%;
+    top: 30%;
     left: 0;
     bottom: 0;
     right: 0;
@@ -291,7 +291,7 @@ onUnmounted(() => {
     z-index: 999;
 
     font-size: 4rem;
-    color: #37FF8B;
+    color: #58e492;
     text-shadow: 3px 3px 2px #51D6FF;
 
 

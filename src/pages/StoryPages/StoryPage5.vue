@@ -191,7 +191,7 @@ onUnmounted(() => {
 }
 
 .s1 {
-    color: #37FF8B;
+    color: #58e492;
 }
 
 .s2 {
