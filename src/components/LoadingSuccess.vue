@@ -18,9 +18,11 @@ onMounted(() => {
         container: lottieRef.value,
         renderer: "canvas",
         loop: false,
-        autoplay: true,
+        autoplay: false,
         animationData: successAnim,
     })
+    lottieInstance.setSpeed(1.5)
+    lottieInstance.play()
     const loading = document.querySelector('#loading')
     if (loading) {
         setTimeout(() => {
