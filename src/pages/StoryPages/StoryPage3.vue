@@ -118,7 +118,7 @@ onUnmounted(() => {
     z-index: -1;
     opacity: 0;
 
-    top: 4rem;
+    top: 50%;
     left: 0;
     bottom: 0;
     right: 0;
