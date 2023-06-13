@@ -99,10 +99,9 @@ onMounted(() => {
 
 
 .my {
-
+    border: 2px solid #b813b2a9;
     gap: 10px;
     position: relative;
-    cursor: pointer;
     font-weight: 900;
     -webkit-transition-duration: .2s;
     transition-duration: .2s;
