@@ -4,7 +4,7 @@
         <div class="row" v-for="obj in list" :key="obj.id">
 
             <div class="left">
-                <span>{{ obj.stu_num }}</span><br />
+                <span class="stu_num">{{ obj.stu_num }}: </span>
                 <span>{{ obj.text }}</span>
             </div>
 
@@ -81,7 +81,7 @@ onMounted(async () => {
     padding: 1rem;
     width: 100%;
     height: 6rem;
-    border-bottom: 1px solid rgb(97, 61, 106);
+    border-bottom: 1px solid rgba(58, 31, 156, 0.37);
     color: snow;
     font-size: 1rem;
 }
@@ -96,6 +96,13 @@ onMounted(async () => {
 .left span {
     word-break: break-word;
     white-space: pre-line;
+    font-size: 1.2rem;
+    color:black;
+}
+
+.stu_num{
+    color: rgb(219, 61, 82) !important;
+    font-size: 1.5rem !important;
 }
 
 .right {
