@@ -158,7 +158,7 @@ onUnmounted(() => {
 }
 
 .page3 .paragraph1 span {
-    color: #522B29;
+    color: #7a3531;
     font-size: 2rem;
 }
 

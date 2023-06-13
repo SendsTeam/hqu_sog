@@ -97,9 +97,68 @@ onMounted(() => {
     color: #522B29;
 }
 
+
 .my {
-    border: 2px solid #A06B9A !important;
+
+    gap: 10px;
+    position: relative;
+    cursor: pointer;
+    font-weight: 900;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
 }
+
+.my:before,
+.my:after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000, #fb0094,
+            #0000ff, #00ff00, #ffff00, #ff0000);
+    background-size: 400%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    -webkit-animation: steam 20s linear infinite;
+    animation: steam 20s linear infinite;
+}
+
+@-webkit-keyframes steam {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+@keyframes steam {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.my:after {
+    -webkit-filter: blur(50px);
+    filter: blur(50px);
+}
+
+
 
 
 .danmaItem img {

@@ -188,7 +188,7 @@ onUnmounted(() => {
 /* 数字 */
 .danceNum1 {
     font-size: 2.4rem;
-    color: #51D6FF;
+    color: #dbb924;
     text-shadow: 0 0 5px #A06B9A;
     display: inline-block;
 

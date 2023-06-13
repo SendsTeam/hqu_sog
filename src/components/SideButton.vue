@@ -37,7 +37,7 @@ onMounted(async () => {
     font-family: fang;
     font-size: 1.2rem;
     color: #A06B9A;
-    text-shadow: 0 0 10px #522B29;
+    text-shadow: 0 0 10px #573b3a;
 
 
     background-color: #f1d476;

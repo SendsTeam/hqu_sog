@@ -60,7 +60,7 @@ const login = async () => {
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    background: #522B29;
+    background: #ca59c522;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-box-shadow: 0 15px 25px rgba(0, 0, 0, .6);

@@ -245,29 +245,22 @@ onUnmounted(() => {
 }
 
 .boom {
-    background-color: #16a044;
+    outline: 0;
+    border: 0;
+    will-change: box-shadow, transform;
+    background: radial-gradient(100% 100% at 100% 0%, #e8bede 20%, #9ea2f0 100%);
+    box-shadow: 0px 0.01em 0.01em rgb(45 35 66 / 40%), 0px 0.3em 0.7em -0.01em rgb(45 35 66 / 30%), inset 0px -0.01em 0px rgb(58 65 111 / 50%);
+    padding: 0 1rem;
     color: #fff;
-    position: relative;
-    z-index: 1;
+
+    text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
 
-.boom::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    border-radius: 20px;
-    transform-origin: center;
-}
 
-.boom:active::before {
-    transform: scale(1.25);
-    transition: all ease-out .5s;
-    border: 1px solid #96f3e0;
-    opacity: 0;
+.boom:active {
+    box-shadow: inset 0px 0.1em 0.6em #a27eab;
+    transform: translateY(0em);
 }
 
 

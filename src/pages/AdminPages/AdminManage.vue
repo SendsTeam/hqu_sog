@@ -111,9 +111,25 @@ onMounted(async () => {
     flex-direction: column;
 }
 
+
 .btn {
     width: 4rem;
     height: 2rem;
     margin-top: .2rem;
+    background-color: #7A5FFF;
+    color: white;
+    border: none;
+    border-radius: .25rem
+}
+
+.click {
+    transition: background .8s ease-out;
+    background: #7A5FFF radial-gradient(circle, transparent 1%, #7A5FFF 1%) center/15000%;
+}
+
+.click:active {
+    background-color: #c1b4ff;
+    background-size: 100%;
+    transition: background 0s;
 }
 </style>

@@ -145,7 +145,7 @@ const storyButton = () => {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 
-    animation: 3s maskHide ease forwards;
+    animation: 2s maskHide ease forwards;
     animation-delay: 2s;
 }
 

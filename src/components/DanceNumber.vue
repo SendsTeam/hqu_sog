@@ -34,7 +34,7 @@ onMounted(() => {
     setTimeout(() => {
         const timer = setInterval(() => {
             showNum.value += stepNum
-        }, 100)
+        }, 150)
         setTimeout(() => {
             clearInterval(timer)
             showNum.value = props.num
