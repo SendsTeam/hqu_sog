@@ -1,5 +1,5 @@
 <template>
-    <span ref="instance" class="default">{{ showNum }}</span>
+    <span ref="instance" class="default">{{ parseInt(showNum) }}</span>
 </template>
     
 <script setup>
@@ -30,11 +30,12 @@ onMounted(() => {
         instance.value.classList.replace('default', props.className)
     }
 
-    const stepNum = parseInt(props.num / (props.dur / 100))
+
     setTimeout(() => {
+        const stepNum = props.num / (props.dur / 100)
         const timer = setInterval(() => {
             showNum.value += stepNum
-        }, 150)
+        }, 100)
         setTimeout(() => {
             clearInterval(timer)
             showNum.value = props.num

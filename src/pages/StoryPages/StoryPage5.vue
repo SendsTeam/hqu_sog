@@ -33,7 +33,21 @@ import { mostteacher } from '../../service/axios'
 const data = ref({})
 const showIndex = ref(0)
 onBeforeMount(async () => {
-
+    //
+    setTimeout(async () => {
+        data.value = await mostteacher()
+        data.value.courses = Array.from(new Set(data.value.courses))
+        data.value.total = data.value.courses.length
+        if (data.value.courses) {
+            setInterval(() => {
+                if (showIndex.value < data.value.courses.length - 1) {
+                    showIndex.value++
+                } else {
+                    showIndex.value = 0
+                }
+            }, 1000)
+        }
+    }, 0)
 })
 
 //router
@@ -54,20 +68,6 @@ const next = async () => {
 
 let lottieInstances = []
 onMounted(async () => {
-    //
-    setTimeout(async () => {
-        data.value = await mostteacher()
-        if (data.value.courses) {
-            setInterval(() => {
-                if (showIndex.value < data.value.courses.length - 1) {
-                    showIndex.value++
-                } else {
-                    showIndex.value = 0
-                }
-            }, 1000)
-        }
-    }, 0)
-
     // star lottie
     const containerStar = document.querySelector('.star-container')
     lottieInstances.push(lottie.loadAnimation({
